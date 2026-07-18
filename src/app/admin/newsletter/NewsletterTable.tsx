@@ -5,7 +5,7 @@ import { Trash2 } from "lucide-react";
 interface Subscriber {
   id: string;
   email: string;
-  createdAt: Date;
+  subscribedAt: Date;
 }
 
 interface Props {
@@ -21,9 +21,7 @@ export default function NewsletterTable({
       <table className="w-full">
 
         <thead className="bg-gray-100">
-
           <tr>
-
             <th className="px-6 py-4 text-left">
               Email
             </th>
@@ -35,28 +33,20 @@ export default function NewsletterTable({
             <th className="px-6 py-4 text-center">
               Action
             </th>
-
           </tr>
-
         </thead>
 
         <tbody>
 
           {subscribers.length === 0 && (
-
             <tr>
-
               <td
                 colSpan={3}
                 className="py-12 text-center text-gray-500"
               >
-
                 No subscribers yet.
-
               </td>
-
             </tr>
-
           )}
 
           {subscribers.map((subscriber) => (
@@ -67,29 +57,21 @@ export default function NewsletterTable({
             >
 
               <td className="px-6 py-4">
-
                 {subscriber.email}
-
               </td>
 
               <td className="px-6 py-4">
-
                 {new Date(
-                  subscriber.createdAt
+                  subscriber.subscribedAt
                 ).toLocaleDateString()}
-
               </td>
 
               <td className="px-6 py-4 text-center">
-
                 <button
                   className="rounded-lg p-2 text-red-600 transition hover:bg-red-50"
                 >
-
                   <Trash2 size={18} />
-
                 </button>
-
               </td>
 
             </tr>

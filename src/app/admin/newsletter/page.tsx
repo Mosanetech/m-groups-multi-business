@@ -1,26 +1,23 @@
-import {
-  getSubscribers,
-} from "@/actions/newsletter";
-
-import NewsletterToolbar from "@/components/admin/newsletter/NewsletterToolbar";
-import NewsletterTable from "@/components/admin/newsletter/NewsletterTable";
-
-export default async function NewsletterPage() {
-
-  const subscribers =
-    await getSubscribers();
-
+export default function NewsletterPage() {
   return (
+    <div className="space-y-6">
 
-    <div className="space-y-8">
+      <h1 className="text-4xl font-bold">
+        Newsletter
+      </h1>
 
-      <NewsletterToolbar />
+      <div className="rounded-2xl border bg-white p-10">
 
-      <NewsletterTable
-        subscribers={subscribers}
-      />
+        <h2 className="text-2xl font-semibold">
+          Coming Soon
+        </h2>
+
+        <p className="mt-4 text-muted-foreground">
+          Newsletter management will be added in the next update.
+        </p>
+
+      </div>
 
     </div>
-
   );
 }

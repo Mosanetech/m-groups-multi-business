@@ -1,92 +1,46 @@
-import TechnologyBadges from "./TechnologyBadges";
 import ProjectLinks from "./ProjectLinks";
 
-import { Project } from "@/types/project";
+import { Project } from "@prisma/client";
 
-interface Props{
-    project:Project;
+interface Props {
+  project: Project;
 }
 
 export default function ProjectInfo({
-    project,
-}:Props){
+  project,
+}: Props) {
 
-return(
+  return (
 
-<section>
+    <section>
 
-<span className="rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+      <span className="rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
 
-{project.category}
+        {project.category}
 
-</span>
+      </span>
 
-<h1 className="mt-6 text-5xl font-bold">
+      <h1 className="mt-6 text-5xl font-bold">
 
-{project.title}
+        {project.title}
 
-</h1>
+      </h1>
 
-<p className="mt-8 leading-8 text-muted-foreground">
+      <p className="mt-8 leading-8 text-muted-foreground">
 
-{project.description}
+        {project.description}
 
-</p>
+      </p>
 
-<div className="mt-10 grid gap-6 md:grid-cols-2">
+      <ProjectLinks
+        website={project.websiteUrl}
+        playStore={project.playStoreUrl}
+        appStore={project.appStoreUrl}
+        github={project.githubUrl}
+      />
 
-<div className="rounded-2xl border p-6">
+    </section>
 
-<p className="text-sm text-muted-foreground">
-
-Client
-
-</p>
-
-<p className="mt-2 font-semibold">
-
-{project.client}
-
-</p>
-
-</div>
-
-<div className="rounded-2xl border p-6">
-
-<p className="text-sm text-muted-foreground">
-
-Completed
-
-</p>
-
-<p className="mt-2 font-semibold">
-
-{project.completed}
-
-</p>
-
-</div>
-
-</div>
-
-<TechnologyBadges
-
-technologies={project.technologies}
-
-/>
-
-<ProjectLinks
-
-website={project.website}
-
-playStore={project.playStore}
-
-appStore={project.appStore}
-
-/>
-
-</section>
-
-);
+  );
 
 }

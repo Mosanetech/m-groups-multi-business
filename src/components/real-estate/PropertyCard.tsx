@@ -1,44 +1,69 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BedDouble, Bath, MapPin, Ruler, ArrowRight } from "lucide-react";
-import { Property } from "@/types/property";
+
+import {
+  BedDouble,
+  Bath,
+  MapPin,
+  Ruler,
+  ArrowRight,
+} from "lucide-react";
+
+import { Property } from "@prisma/client";
+
 import PropertyStatusBadge from "./PropertyStatusBadge";
 
 interface Props {
-  property: Property;
+
+  property: Property & {
+
+    images: {
+      image: string;
+    }[];
+
+  };
+
 }
 
-export default function PropertyCard({ property }: Props) {
-  return (
-    <div className="group overflow-hidden rounded-3xl border bg-card shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+export default function PropertyCard({
+  property,
+}: Props) {
 
-      {/* Image */}
+  const image =
+    property.images[0]?.image ??
+    "/images/property-placeholder.jpg";
+
+  return (
+
+    <div className="group overflow-hidden rounded-3xl border bg-card shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
 
       <div className="relative h-72 overflow-hidden">
 
         <Image
-          src={property.image}
+          src={image}
           alt={property.title}
           fill
           className="object-cover transition duration-500 group-hover:scale-110"
         />
 
         <PropertyStatusBadge
-    status={property.status}
-      />
+          status={property.status}
+        />
 
       </div>
 
-      {/* Content */}
-
       <div className="p-6">
 
-        <p className="text-3xl font-bold text-primary">
-         MK {property.price.toLocaleString()}
+        <p className="text-3xl font-bold text-black">
+
+          MK {property.price.toLocaleString()}
+
         </p>
 
         <h3 className="mt-3 text-2xl font-bold">
+
           {property.title}
+
         </h3>
 
         <div className="mt-3 flex items-center gap-2 text-muted-foreground">
@@ -78,15 +103,20 @@ export default function PropertyCard({ property }: Props) {
         </div>
 
         <Link
-          href={`/services/real-estate/${property.slug}`}
-          className="mt-8 inline-flex items-center gap-2 font-semibold text-primary"
+        href={`/services/real-estate/${property.slug}`}
+          className="mt-8 inline-flex items-center gap-2 font-semibold text-black"
         >
+
           View Details
+
           <ArrowRight size={18} />
+
         </Link>
 
       </div>
 
     </div>
+
   );
+
 }

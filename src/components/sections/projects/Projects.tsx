@@ -1,46 +1,35 @@
+import { prisma } from "@/lib/prisma";
 import ProjectCard from "./ProjectCard";
 
-const PROJECTS = [
-  {
-    title: "Luxury Residential Homes",
-    category: "Real Estate",
-    image: "/images/projects/project1.jpg",
-    href: "/services/real-estate",
-  },
-  {
-    title: "Corporate Management System",
-    category: "ICT",
-    image: "/images/projects/project2.jpg",
-    href: "/services/ict",
-  },
-  {
-    title: "Business Financial Planning",
-    category: "Finance",
-    image: "/images/projects/project3.jpg",
-    href: "/services/finance",
-  },
-  {
-    title: "Professional Translation Services",
-    category: "Language",
-    image: "/images/projects/project4.jpg",
-    href: "/services/language",
-  },
-  {
-    title: "Teacher Capacity Building",
-    category: "Education",
-    image: "/images/projects/project5.jpg",
-    href: "/services/education",
-  },
-];
+export default async function Projects() {
 
-export default function Projects() {
+  const projects = await prisma.project.findMany({
+
+    where: {
+      featured: true,
+    },
+
+    orderBy: {
+      createdAt: "desc",
+    },
+
+    take: 6,
+
+  });
+
+  if (projects.length === 0) {
+    return null;
+  }
+
   return (
+
     <section className="py-24">
+
       <div className="container mx-auto">
 
         <div className="mb-16 text-center">
 
-          <span className="rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+          <span className="rounded-full bg-black px-4 py-2 text-sm font-semibold text-white">
             Featured Projects
           </span>
 
@@ -52,16 +41,21 @@ export default function Projects() {
 
         <div className="grid gap-8 lg:grid-cols-3">
 
-          {PROJECTS.map((project) => (
+          {projects.map((project) => (
+
             <ProjectCard
-              key={project.title}
-              {...project}
+              key={project.id}
+              project={project}
             />
+
           ))}
 
         </div>
 
       </div>
+
     </section>
+
   );
+
 }

@@ -2,19 +2,36 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Property } from "@/types/property";
 
 interface Props {
-  property: Property;
+
+  property: {
+    title: string;
+
+    images: {
+      image: string;
+    }[];
+  };
+
 }
 
-export default function PropertyGallery({ property }: Props) {
-  const [selected, setSelected] = useState(property.gallery[0]);
+export default function PropertyGallery({
+  property,
+}: Props) {
+
+  const images =
+    property.images.length
+      ? property.images
+      : [{ image: "/placeholder-property.jpg" }];
+
+  const [selected, setSelected] =
+    useState(images[0].image);
 
   return (
+
     <section>
 
-      <div className="relative h-[500px] overflow-hidden rounded-3xl">
+      <div className="relative h-[520px] overflow-hidden rounded-3xl">
 
         <Image
           src={selected}
@@ -25,33 +42,35 @@ export default function PropertyGallery({ property }: Props) {
 
       </div>
 
-      <div className="mt-4 grid grid-cols-3 gap-4">
+      <div className="mt-5 grid grid-cols-4 gap-4">
 
-        {property.gallery.map((image) => (
+        {
 
-          <button
-            key={image}
-            onClick={() => setSelected(image)}
-            className={`relative h-28 overflow-hidden rounded-2xl border-2 transition ${
-              selected === image
-                ? "border-primary"
-                : "border-transparent"
-            }`}
-          >
+          images.map((image) => (
 
-            <Image
-              src={image}
-              alt=""
-              fill
-              className="object-cover"
-            />
+            <button
+              key={image.image}
+              onClick={() => setSelected(image.image)}
+              className="relative h-28 overflow-hidden rounded-xl"
+            >
 
-          </button>
+              <Image
+                src={image.image}
+                alt=""
+                fill
+                className="object-cover"
+              />
 
-        ))}
+            </button>
+
+          ))
+
+        }
 
       </div>
 
     </section>
+
   );
+
 }

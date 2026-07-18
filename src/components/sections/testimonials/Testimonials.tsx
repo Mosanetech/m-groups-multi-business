@@ -1,70 +1,84 @@
+import { prisma } from "@/lib/prisma";
+
 import TestimonialCard from "./TestimonialCard";
 
-const TESTIMONIALS = [
+export default async function Testimonials() {
 
-{
-name:"John Banda",
-role:"Business Owner",
-message:"M Groups delivered an excellent ICT solution."
+  const testimonials =
+    await prisma.testimonial.findMany({
 
-},
+      where: {
+        featured: true,
+      },
 
-{
+      take: 6,
 
-name:"Grace Phiri",
-role:"Property Buyer",
-message:"Buying land was simple and transparent."
+      orderBy: {
+        createdAt: "desc",
+      },
 
-},
+    });
 
-{
+  return (
 
-name:"Peter Mbewe",
-role:"Student",
-message:"Their academy helped me gain practical skills."
+    <section className="bg-muted/30 py-24">
 
-}
+      <div className="container mx-auto">
 
-];
+        <div className="mb-16 text-center">
 
-export default function Testimonials(){
+          <h2 className="text-5xl font-bold">
 
-return(
+            What Clients Say
 
-<section className="bg-muted/30 py-24">
+          </h2>
 
-<div className="container mx-auto">
+        </div>
 
-<div className="mb-16 text-center">
+        {
 
-<h2 className="text-5xl font-bold">
+          testimonials.length === 0 ? (
 
-What Clients Say
+            <div className="rounded-2xl border p-10 text-center">
 
-</h2>
+              No testimonials available.
 
-</div>
+            </div>
 
-<div className="grid gap-8 lg:grid-cols-3">
+          ) : (
 
-{TESTIMONIALS.map(testimonial=>(
+            <div className="grid gap-8 lg:grid-cols-3">
 
-<TestimonialCard
+              {
 
-key={testimonial.name}
+                testimonials.map((testimonial) => (
 
-{...testimonial}
+                  <TestimonialCard
 
-/>
+                    key={testimonial.id}
 
-))}
+                    name={testimonial.name}
 
-</div>
+                    role={testimonial.position ?? ""}
 
-</div>
+                    message={testimonial.message}
 
-</section>
+                  />
 
-)
+                ))
+
+              }
+
+            </div>
+
+          )
+
+        }
+
+      </div>
+
+    </section>
+
+  );
 
 }

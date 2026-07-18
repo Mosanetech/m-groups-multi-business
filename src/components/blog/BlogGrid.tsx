@@ -1,33 +1,44 @@
-import { BLOG_POSTS } from "@/config/blog";
+import { prisma } from "@/lib/prisma";
 
 import BlogCard from "./BlogCard";
 import FeaturedPost from "./FeaturedPost";
 
-export default function BlogGrid() {
+export default async function BlogGrid() {
 
-  const featured = BLOG_POSTS.find(
-    post => post.featured
-  );
+  const posts = await prisma.blog.findMany({
 
-  const posts = BLOG_POSTS.filter(
-    post => !post.featured
-  );
+    where: {
+      published: true,
+    },
+
+    orderBy: {
+      createdAt: "desc",
+    },
+
+  });
+
+  if (posts.length === 0) {
+    return null;
+  }
+
+  const featured = posts[0];
+
+  const remaining = posts.slice(1);
 
   return (
+
     <>
 
-      {featured && (
-        <FeaturedPost
-          post={featured}
-        />
-      )}
+      <FeaturedPost
+        post={featured}
+      />
 
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 
-        {posts.map(post => (
+        {remaining.map((post) => (
 
           <BlogCard
-            key={post.slug}
+            key={post.id}
             post={post}
           />
 
@@ -36,5 +47,7 @@ export default function BlogGrid() {
       </div>
 
     </>
+
   );
+
 }

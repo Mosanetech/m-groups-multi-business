@@ -1,17 +1,34 @@
-import { PROJECTS } from "@/config/projects";
+import { prisma } from "@/lib/prisma";
 import ProjectCard from "./ProjectCard";
 
 interface Props {
   currentSlug: string;
 }
 
-export default function RelatedProjects({
+export default async function RelatedProjects({
   currentSlug,
 }: Props) {
 
-  const related = PROJECTS
-    .filter(project => project.slug !== currentSlug)
-    .slice(0, 3);
+  const projects =
+    await prisma.project.findMany({
+
+      where: {
+        NOT: {
+          slug: currentSlug,
+        },
+      },
+
+      take: 3,
+
+      orderBy: {
+        createdAt: "desc",
+      },
+
+    });
+
+  if (projects.length === 0) {
+    return null;
+  }
 
   return (
 
@@ -23,10 +40,10 @@ export default function RelatedProjects({
 
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 
-        {related.map(project => (
+        {projects.map((project) => (
 
           <ProjectCard
-            key={project.slug}
+            key={project.id}
             project={project}
           />
 

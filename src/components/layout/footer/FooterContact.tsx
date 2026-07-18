@@ -4,8 +4,15 @@ import {
   MapPin,
 } from "lucide-react";
 
-export default function FooterContact() {
+import { getSiteSettings } from "@/lib/site-settings";
+
+export default async function FooterContact() {
+
+  const settings =
+    await getSiteSettings();
+
   return (
+
     <div>
 
       <h3 className="mb-6 text-lg font-bold">
@@ -18,15 +25,35 @@ export default function FooterContact() {
 
           <Phone size={18} />
 
-          <span>+265 XXX XXX XXX</span>
+          <span>
+
+            {settings.phone1 || "Phone Number"}
+
+          </span>
 
         </div>
+
+        {settings.phone2 && (
+
+          <div className="flex items-center gap-3">
+
+            <Phone size={18} />
+
+            <span>{settings.phone2}</span>
+
+          </div>
+
+        )}
 
         <div className="flex items-center gap-3">
 
           <Mail size={18} />
 
-          <span>info@mgroups.com</span>
+          <span>
+
+            {settings.email || "info@example.com"}
+
+          </span>
 
         </div>
 
@@ -34,12 +61,18 @@ export default function FooterContact() {
 
           <MapPin size={18} />
 
-          <span>Lilongwe, Malawi</span>
+          <span>
+
+            {settings.address || "Address"}
+
+          </span>
 
         </div>
 
       </div>
 
     </div>
+
   );
+
 }

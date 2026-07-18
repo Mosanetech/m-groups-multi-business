@@ -1,8 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function About() {
+import { getSiteSettings } from "@/lib/site-settings";
+
+export default async function About() {
+
+  const settings =
+    await getSiteSettings();
+
   return (
+
     <section className="py-24">
 
       <div className="container mx-auto">
@@ -13,7 +20,7 @@ export default function About() {
 
             <Image
               src="/images/about/about.jpg"
-              alt="About M Groups"
+              alt={settings.companyName}
               fill
               className="object-cover"
             />
@@ -22,32 +29,33 @@ export default function About() {
 
           <div>
 
-            <span className="rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-              About M Groups
+            <span className="rounded-full bg-black px-4 py-2 text-sm font-semibold text-white">
+
+              About {settings.companyName}
+
             </span>
 
             <h2 className="mt-6 text-5xl font-bold">
-              One Company.
-              <br />
-              Multiple Professional Services.
+
+              {settings.companyName}
+
             </h2>
 
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              M Groups brings together Real Estate,
-              ICT, Financial Services and Education
-              under one trusted brand. Our mission is
-              to deliver innovative, reliable and
-              affordable solutions that improve lives
-              and businesses.
+
+              {settings.footerText}
+
             </p>
 
             <div className="mt-8">
 
               <Link
                 href="/about"
-                className="rounded-full bg-primary px-7 py-4 font-semibold text-primary-foreground"
+                className="rounded-full bg-black px-7 py-4 font-semibold text-white"
               >
+
                 Learn More
+
               </Link>
 
             </div>
@@ -59,5 +67,7 @@ export default function About() {
       </div>
 
     </section>
+
   );
+
 }

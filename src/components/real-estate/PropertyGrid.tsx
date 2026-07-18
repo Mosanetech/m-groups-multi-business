@@ -1,67 +1,83 @@
-"use client";
-
-import { useState } from "react";
-
-import { PROPERTIES } from "@/config/properties";
+import { prisma } from "@/lib/prisma";
 
 import PropertyCard from "./PropertyCard";
-import PropertySearch from "./PropertySearch";
-import PropertyFilter from "./PropertyFilter";
 
-export default function PropertyGrid() {
+interface Props {
+  searchParams?: Promise<{
+    search?: string;
+    type?: string;
+  }>;
+}
 
-  const [search, setSearch] = useState("");
+export default async function PropertyGrid({
+  searchParams,
+}: Props) {
+  const params = (await searchParams) ?? {};
 
-  const [type, setType] = useState("");
+  const search = params.search ?? "";
+  const type = params.type ?? "";
 
-  const filtered = PROPERTIES.filter((property) => {
+  const properties = await prisma.property.findMany({
+    where: {
+      AND: [
+        search
+          ? {
+              OR: [
+                {
+                  title: {
+                    contains: search,
+                    mode: "insensitive",
+                  },
+                },
+                {
+                  city: {
+                    contains: search,
+                    mode: "insensitive",
+                  },
+                },
+                {
+                  location: {
+                    contains: search,
+                    mode: "insensitive",
+                  },
+                },
+              ],
+            }
+          : {},
 
-    const matchesSearch =
-      property.title
-        .toLowerCase()
-        .includes(search.toLowerCase()) ||
-      property.city
-        .toLowerCase()
-        .includes(search.toLowerCase()) ||
-      property.location
-        .toLowerCase()
-        .includes(search.toLowerCase());
+        type
+          ? {
+              type: type as any,
+            }
+          : {},
+      ],
+    },
 
-    const matchesType =
-      !type || property.type === type;
+    include: {
+      images: true,
+    },
 
-    return matchesSearch && matchesType;
-
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
+  if (properties.length === 0) {
+    return (
+      <p className="text-center text-muted-foreground">
+        No properties found.
+      </p>
+    );
+  }
+
   return (
-    <>
-      <div className="mb-10 flex flex-col gap-4 md:flex-row">
-
-        <PropertySearch
-          value={search}
-          onChange={setSearch}
+    <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+      {properties.map((property) => (
+        <PropertyCard
+          key={property.id}
+          property={property}
         />
-
-        <PropertyFilter
-          value={type}
-          onChange={setType}
-        />
-
-      </div>
-
-      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-
-        {filtered.map((property) => (
-
-          <PropertyCard
-            key={property.slug}
-            property={property}
-          />
-
-        ))}
-
-      </div>
-    </>
+      ))}
+    </div>
   );
 }

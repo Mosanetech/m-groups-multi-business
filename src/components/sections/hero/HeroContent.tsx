@@ -1,53 +1,87 @@
 import Link from "next/link";
+
 import HeroStats from "./HeroStats";
+import { getSiteSettings } from "@/lib/site-settings";
+import { prisma } from "@/lib/prisma";
 
-const stats = [
-  {
-    label: "Projects",
-    value: "120+",
-  },
-  {
-    label: "Clients",
-    value: "80+",
-  },
-  {
-    label: "Years",
-    value: "10+",
-  },
-];
+export default async function HeroContent() {
 
-export default function HeroContent() {
+  const settings =
+    await getSiteSettings();
+
+  const [
+    projects,
+    properties,
+    testimonials,
+  ] = await Promise.all([
+
+    prisma.project.count(),
+
+    prisma.property.count(),
+
+    prisma.testimonial.count(),
+
+  ]);
+
+  const stats = [
+
+    {
+      label: "Projects",
+      value: `${projects}+`,
+    },
+
+    {
+      label: "Properties",
+      value: `${properties}+`,
+    },
+
+    {
+      label: "Clients",
+      value: `${testimonials}+`,
+    },
+
+  ];
+
   return (
+
     <div className="relative">
 
-      <span className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+      <span className="inline-flex rounded-full bg-black px-4 py-2 text-sm font-semibold text-white">
+
         Trusted Business Solutions
+
       </span>
 
       <h1 className="mt-6 text-5xl font-bold leading-tight lg:text-6xl">
-        Building Better Communities Through Innovation
+
+        {settings.companyName}
+
       </h1>
 
       <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-        M Groups provides professional Real Estate,
-        ICT, Financial and Educational services through
-        one trusted platform.
+
+        {settings.footerText}
+
       </p>
 
       <div className="mt-10 flex flex-wrap gap-4">
 
         <Link
           href="/services"
-          className="rounded-full bg-primary px-7 py-4 font-semibold text-primary-foreground transition hover:scale-105"
+          className="rounded-full bg-black px-7 py-4 font-semibold text-white transition hover:scale-105"
         >
+
           Explore Services
+
         </Link>
 
         <Link
           href="/contact"
-          className="rounded-full border border-border px-7 py-4 font-semibold transition hover:bg-muted"
+          className="rounded-full border px-7 py-4 font-semibold transition hover:bg-muted"
         >
+
           Contact Us
+
         </Link>
 
       </div>
@@ -55,5 +89,7 @@ export default function HeroContent() {
       <HeroStats stats={stats} />
 
     </div>
+
   );
+
 }

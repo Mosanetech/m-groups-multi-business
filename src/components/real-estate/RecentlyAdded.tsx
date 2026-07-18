@@ -1,15 +1,26 @@
-import { PROPERTIES } from "@/config/properties";
+import { prisma } from "@/lib/prisma";
 import PropertyCard from "./PropertyCard";
 
-export default function RecentlyAdded() {
+export default async function RecentlyAdded() {
 
-  const recent = [...PROPERTIES]
-    .sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() -
-        new Date(a.createdAt).getTime()
-    )
-    .slice(0, 6);
+  const properties =
+    await prisma.property.findMany({
+
+      include: {
+        images: true,
+      },
+
+      orderBy: {
+        createdAt: "desc",
+      },
+
+      take: 6,
+
+    });
+
+  if (properties.length === 0) {
+    return null;
+  }
 
   return (
 
@@ -29,10 +40,10 @@ export default function RecentlyAdded() {
 
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 
-        {recent.map(property => (
+        {properties.map((property) => (
 
           <PropertyCard
-            key={property.slug}
+            key={property.id}
             property={property}
           />
 
@@ -43,4 +54,5 @@ export default function RecentlyAdded() {
     </section>
 
   );
+
 }

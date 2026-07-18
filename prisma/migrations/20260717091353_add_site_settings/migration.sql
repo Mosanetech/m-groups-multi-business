@@ -1,0 +1,30 @@
+-- CreateTable
+CREATE TABLE "public"."SiteSettings" (
+    "id" TEXT NOT NULL,
+    "companyName" TEXT NOT NULL DEFAULT 'M Groups',
+    "tagline" TEXT,
+    "description" TEXT,
+    "logo" TEXT,
+    "favicon" TEXT,
+    "whatsapp" TEXT,
+    "phone1" TEXT,
+    "phone2" TEXT,
+    "email" TEXT,
+    "address" TEXT,
+    "googleMaps" TEXT,
+    "facebook" TEXT,
+    "instagram" TEXT,
+    "linkedin" TEXT,
+    "twitter" TEXT,
+    "youtube" TEXT,
+    "tiktok" TEXT,
+    "metaTitle" TEXT,
+    "metaDescription" TEXT,
+    "keywords" TEXT,
+    "footerText" TEXT,
+    "copyright" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "SiteSettings_pkey" PRIMARY KEY ("id")
+);

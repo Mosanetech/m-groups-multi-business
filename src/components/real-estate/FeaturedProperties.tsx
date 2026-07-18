@@ -1,14 +1,33 @@
-import { PROPERTIES } from "@/config/properties";
+import { prisma } from "@/lib/prisma";
 import PropertyCard from "./PropertyCard";
 
-export default function FeaturedProperties() {
-  const featured = PROPERTIES.filter(
-    property => property.featured
-  );
+export default async function FeaturedProperties() {
 
-  if (featured.length === 0) return null;
+  const properties =
+    await prisma.property.findMany({
+
+      where: {
+        featured: true,
+      },
+
+      include: {
+        images: true,
+      },
+
+      orderBy: {
+        createdAt: "desc",
+      },
+
+      take: 6,
+
+    });
+
+  if (properties.length === 0) {
+    return null;
+  }
 
   return (
+
     <section className="mt-20">
 
       <div className="mb-10">
@@ -25,15 +44,23 @@ export default function FeaturedProperties() {
 
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 
-        {featured.map(property => (
-          <PropertyCard
-            key={property.slug}
-            property={property}
-          />
-        ))}
+        {
+
+          properties.map((property) => (
+
+            <PropertyCard
+              key={property.id}
+              property={property}
+            />
+
+          ))
+
+        }
 
       </div>
 
     </section>
+
   );
+
 }

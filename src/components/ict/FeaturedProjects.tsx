@@ -1,12 +1,19 @@
-import { PROJECTS } from "@/config/projects";
+import { prisma } from "@/lib/prisma";
 import ProjectCard from "./ProjectCard";
 
-export default function FeaturedProjects() {
-  const featured = PROJECTS.filter(
-    project => project.featured
-  );
+export default async function FeaturedProjects() {
+  const projects = await prisma.project.findMany({
+    where: {
+      featured: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
-  if (featured.length === 0) return null;
+  if (projects.length === 0) {
+    return null;
+  }
 
   return (
     <section className="mt-24">
@@ -25,10 +32,10 @@ export default function FeaturedProjects() {
 
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 
-        {featured.map(project => (
+        {projects.map((project) => (
 
           <ProjectCard
-            key={project.slug}
+            key={project.id}
             project={project}
           />
 

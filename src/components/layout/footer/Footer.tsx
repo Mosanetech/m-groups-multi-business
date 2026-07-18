@@ -4,8 +4,15 @@ import FooterBottom from "./FooterBottom";
 import FooterContact from "./FooterContact";
 import FooterLinks from "./FooterLinks";
 
-export default function Footer() {
+import { getSiteSettings } from "@/lib/site-settings";
+
+export default async function Footer() {
+
+  const settings =
+    await getSiteSettings();
+
   return (
+
     <footer className="border-t bg-muted/30">
 
       <div className="container mx-auto py-20">
@@ -18,13 +25,15 @@ export default function Footer() {
               href="/"
               className="text-3xl font-bold"
             >
-              M Groups
+              {settings.companyName}
             </Link>
 
             <p className="mt-6 leading-7 text-muted-foreground">
-              Delivering Real Estate,
-              ICT, Financial and Educational
-              services under one trusted brand.
+
+              {settings.footerText ||
+
+                "Delivering Real Estate, ICT, Financial and Educational services under one trusted brand."}
+
             </p>
 
           </div>
@@ -40,5 +49,7 @@ export default function Footer() {
       </div>
 
     </footer>
+
   );
+
 }

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { BlogPost } from "@/types/blog";
+import { Blog } from "@prisma/client";
 
 interface Props {
-  post: BlogPost;
+  post: Blog;
 }
 
 export default function FeaturedPost({
@@ -17,12 +17,13 @@ export default function FeaturedPost({
 
         <div className="relative min-h-[400px]">
 
-          <Image
-            src={post.image}
-            alt={post.title}
-            fill
-            className="object-cover"
-          />
+       <Image
+        src={post.image}
+        alt={post.title}
+        fill
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        className="object-cover"
+      />
 
         </div>
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { Project } from "@/types/project";
+import { Project } from "@prisma/client";
 
 interface Props {
   project: Project;

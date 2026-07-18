@@ -1,4 +1,4 @@
-"use client";
+
 
 import HeroContent from "./HeroContent";
 import HeroSlider from "./slider/HeroSlider";

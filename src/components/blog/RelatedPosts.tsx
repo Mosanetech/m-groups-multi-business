@@ -1,19 +1,39 @@
-import { BLOG_POSTS } from "@/config/blog";
+import { prisma } from "@/lib/prisma";
 import BlogCard from "./BlogCard";
 
 interface Props {
   currentSlug: string;
 }
 
-export default function RelatedPosts({
+export default async function RelatedPosts({
   currentSlug,
 }: Props) {
 
-  const posts = BLOG_POSTS.filter(
-    post => post.slug !== currentSlug
-  ).slice(0,3);
+  const posts =
+    await prisma.blog.findMany({
 
-  return (
+      where:{
+        published:true,
+
+        NOT:{
+          slug:currentSlug,
+        },
+      },
+
+      take:3,
+
+      orderBy:{
+        createdAt:"desc",
+      },
+
+    });
+
+  if(posts.length===0){
+    return null;
+  }
+
+  return(
+
     <section className="mt-24">
 
       <h2 className="mb-10 text-3xl font-bold">
@@ -22,10 +42,10 @@ export default function RelatedPosts({
 
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 
-        {posts.map(post => (
+        {posts.map(post=>(
 
           <BlogCard
-            key={post.slug}
+            key={post.id}
             post={post}
           />
 
@@ -34,5 +54,7 @@ export default function RelatedPosts({
       </div>
 
     </section>
+
   );
+
 }

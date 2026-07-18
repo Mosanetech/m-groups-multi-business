@@ -5,10 +5,6 @@ import "./globals.css";
 
 import ThemeProvider from "@/components/providers/ThemeProvider";
 
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer/Footer";
-import FloatingWhatsApp from "@/components/shared/FloatingWhatsApp";
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
@@ -27,9 +23,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
@@ -39,16 +35,7 @@ export default function RootLayout({
         className={`${inter.variable} ${poppins.variable} antialiased`}
       >
         <ThemeProvider>
-
-          <Header />
-
-          <main className="min-h-screen">
-            <FloatingWhatsApp />
-            {children}
-          </main>
-
-          <Footer />
-
+          {children}
         </ThemeProvider>
       </body>
     </html>

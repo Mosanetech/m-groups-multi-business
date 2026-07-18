@@ -1,45 +1,47 @@
-import { CheckCircle2 } from "lucide-react";
-
-import { Property } from "@/types/property";
-
 interface Props {
-  property: Property;
+  property: {
+    amenities: {
+      id: string;
+      name: string;
+    }[];
+  };
 }
 
 export default function PropertyFeatures({
   property,
 }: Props) {
-
   return (
+    <section className="mt-12">
 
-    <section className="mt-16">
-
-      <h2 className="mb-8 text-3xl font-bold">
-
-        Property Features
-
+      <h2 className="text-3xl font-bold">
+        Features & Amenities
       </h2>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      {property.amenities.length === 0 ? (
 
-        {property.amenities.map((feature) => (
+        <p className="mt-6 text-gray-500">
+          No amenities listed.
+        </p>
 
-          <div
-            key={feature}
-            className="flex items-center gap-3 rounded-xl border p-4"
-          >
+      ) : (
 
-            <CheckCircle2 className="text-primary" />
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
 
-            <span>{feature}</span>
+          {property.amenities.map((amenity) => (
 
-          </div>
+            <div
+              key={amenity.id}
+              className="rounded-xl border p-4"
+            >
+              ✓ {amenity.name}
+            </div>
 
-        ))}
+          ))}
 
-      </div>
+        </div>
+
+      )}
 
     </section>
-
   );
 }

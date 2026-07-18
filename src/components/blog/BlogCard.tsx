@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { BlogPost } from "@/types/blog";
+import { Blog } from "@prisma/client";
 
 interface Props {
-  post: BlogPost;
+  post: Blog;
 }
 
 export default function BlogCard({
@@ -16,22 +16,19 @@ export default function BlogCard({
 
       <div className="relative h-64">
 
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          className="object-cover"
-        />
+       <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+            className="object-cover"
+          />
 
       </div>
 
       <div className="p-6">
 
-        <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
-          {post.category}
-        </span>
-
-        <h2 className="mt-4 text-2xl font-bold">
+        <h2 className="text-2xl font-bold">
           {post.title}
         </h2>
 

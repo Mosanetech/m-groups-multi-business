@@ -5,7 +5,9 @@ interface LogoProps {
   className?: string;
 }
 
-export default function Logo({ className }: LogoProps) {
+export default function Logo({
+  className,
+}: LogoProps) {
   return (
     <Link
       href="/"
@@ -16,24 +18,24 @@ export default function Logo({ className }: LogoProps) {
     >
       <div
         className="
-          flex h-11 w-11
-          items-center justify-center
+          flex
+          h-11
+          w-11
+          items-center
+          justify-center
           rounded-xl
-          bg-primary
+          bg-black
           text-lg
           font-bold
-          text-primary-foreground
+          text-white
           shadow-md
-          transition-transform
-          duration-300
-          group-hover:rotate-3
         "
       >
         MG
       </div>
 
       <div className="hidden sm:block">
-        <h2 className="text-lg font-bold leading-none">
+        <h2 className="text-lg font-bold">
           M Groups
         </h2>
 

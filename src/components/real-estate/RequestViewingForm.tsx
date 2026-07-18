@@ -2,81 +2,103 @@
 
 import { useState } from "react";
 
-export default function RequestViewingForm() {
+interface Props {
+  propertyId: string;
+}
 
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    date: "",
-    message: "",
-  });
+export default function RequestViewingForm({
+  propertyId,
+}: Props) {
+
+  const [loading, setLoading] =
+    useState(false);
+
+  async function handleSubmit(
+    e: React.FormEvent<HTMLFormElement>
+  ) {
+
+    e.preventDefault();
+
+    setLoading(true);
+
+    const form =
+      new FormData(e.currentTarget);
+
+    await fetch("/api/property-inquiry", {
+
+      method: "POST",
+
+      body: JSON.stringify({
+
+        propertyId,
+
+        fullName: form.get("fullName"),
+
+        email: form.get("email"),
+
+        phone: form.get("phone"),
+
+        message: form.get("message"),
+
+      }),
+
+    });
+
+    alert("Inquiry sent successfully.");
+
+    setLoading(false);
+
+    e.currentTarget.reset();
+
+  }
 
   return (
 
-    <section className="mt-20 rounded-3xl border p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="mt-16 rounded-3xl border p-8 space-y-5"
+    >
 
-      <h2 className="text-3xl font-bold">
-        Request a Viewing
+      <h2 className="text-2xl font-bold">
+        Request Viewing
       </h2>
 
-      <div className="mt-8 grid gap-6">
+      <input
+        name="fullName"
+        placeholder="Full Name"
+        required
+        className="w-full rounded-xl border p-3"
+      />
 
-        <input
-          placeholder="Full Name"
-          className="rounded-xl border p-4"
-          value={form.name}
-          onChange={(e)=>
-            setForm({
-              ...form,
-              name:e.target.value
-            })
-          }
-        />
+      <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        required
+        className="w-full rounded-xl border p-3"
+      />
 
-        <input
-          placeholder="Phone Number"
-          className="rounded-xl border p-4"
-          value={form.phone}
-          onChange={(e)=>
-            setForm({
-              ...form,
-              phone:e.target.value
-            })
-          }
-        />
+      <input
+        name="phone"
+        placeholder="Phone"
+        className="w-full rounded-xl border p-3"
+      />
 
-        <input
-          type="date"
-          className="rounded-xl border p-4"
-          value={form.date}
-          onChange={(e)=>
-            setForm({
-              ...form,
-              date:e.target.value
-            })
-          }
-        />
+      <textarea
+        name="message"
+        placeholder="Message"
+        rows={5}
+        className="w-full rounded-xl border p-3"
+      />
 
-        <textarea
-          rows={5}
-          placeholder="Message"
-          className="rounded-xl border p-4"
-          value={form.message}
-          onChange={(e)=>
-            setForm({
-              ...form,
-              message:e.target.value
-            })
-          }
-        />
+      <button
+        disabled={loading}
+        className="rounded-xl bg-black px-6 py-3 text-white"
+      >
+        {loading ? "Sending..." : "Send Inquiry"}
+      </button>
 
-        <button className="rounded-xl bg-primary py-4 font-semibold text-white">
-          Request Viewing
-        </button>
-
-      </div>
-
-    </section>
+    </form>
 
   );
 

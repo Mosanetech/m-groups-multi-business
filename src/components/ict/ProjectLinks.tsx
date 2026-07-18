@@ -1,18 +1,21 @@
 import {
   Globe,
   Smartphone,
+  GitBranch,
 } from "lucide-react";
 
 interface Props {
-  website?: string;
-  playStore?: string;
-  appStore?: string;
+  website?: string | null;
+  playStore?: string | null;
+  appStore?: string | null;
+  github?: string | null;
 }
 
 export default function ProjectLinks({
   website,
   playStore,
   appStore,
+  github,
 }: Props) {
 
   return (
@@ -24,10 +27,11 @@ export default function ProjectLinks({
         <a
           href={website}
           target="_blank"
-          className="flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-white"
+          rel="noopener noreferrer"
+          className="rounded-xl bg-black px-6 py-3 text-white flex items-center gap-2"
         >
           <Globe size={18} />
-          Visit Website
+          Website
         </a>
 
       )}
@@ -37,10 +41,11 @@ export default function ProjectLinks({
         <a
           href={playStore}
           target="_blank"
-          className="flex items-center gap-2 rounded-xl border px-6 py-3"
+          rel="noopener noreferrer"
+          className="rounded-xl border px-6 py-3 flex items-center gap-2"
         >
           <Smartphone size={18} />
-          Google Play
+          Play Store
         </a>
 
       )}
@@ -50,10 +55,25 @@ export default function ProjectLinks({
         <a
           href={appStore}
           target="_blank"
-          className="flex items-center gap-2 rounded-xl border px-6 py-3"
+          rel="noopener noreferrer"
+          className="rounded-xl border px-6 py-3 flex items-center gap-2"
         >
           <Smartphone size={18} />
           App Store
+        </a>
+
+      )}
+
+      {github && (
+
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-xl border px-6 py-3 flex items-center gap-2"
+        >
+          <GitBranch size={18} />
+          GitHub
         </a>
 
       )}

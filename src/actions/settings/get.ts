@@ -3,13 +3,17 @@
 import { prisma } from "@/lib/prisma";
 
 export async function getSettings() {
-  let settings = await prisma.siteSettings.findFirst();
-
+ let settings = await prisma.siteSettings.findUnique({
+  where: {
+    id: "default",
+  },
+});
   if (!settings) {
     settings = await prisma.siteSettings.create({
-      data: {
-        companyName: "M Groups",
-      },
+     data: {
+  id: "default",
+  companyName: "M360",
+   },
     });
   }
 

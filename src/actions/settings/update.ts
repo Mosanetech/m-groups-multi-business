@@ -39,14 +39,19 @@ export async function updateSettings(
 ) {
 
    console.log("Incoming settings:", data);
-  const existing =
-    await prisma.siteSettings.findFirst();
-
+  const existing = await prisma.siteSettings.findUnique({
+  where: {
+    id: "default",
+  },
+});
   if (!existing) {
-    await prisma.siteSettings.create({
-      data,
-    });
-  } else {
+  await prisma.siteSettings.create({
+    data: {
+      id: "default",
+      ...data,
+    },
+  });
+} else { {
     await prisma.siteSettings.update({
       where: {
         id: existing.id,
@@ -57,4 +62,4 @@ export async function updateSettings(
 
   revalidatePath("/");
   revalidatePath("/admin/settings");
-}
+}}

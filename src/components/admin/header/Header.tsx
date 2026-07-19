@@ -3,17 +3,13 @@
 import {
   Bell,
   Menu,
-  Search,
-  PanelLeftClose,
-  PanelLeftOpen,
+  Search
 } from "lucide-react";
 
 import UserDropdown from "./UserDropdown";
 
 interface Props {
-  collapsed: boolean;
-
-  toggleSidebar: () => void;
+  
 
   openMobile: () => void;
 
@@ -21,8 +17,7 @@ interface Props {
 }
 
 export default function Header({
-  collapsed,
-  toggleSidebar,
+  
   openMobile,
   username,
 }: Props) {
@@ -36,8 +31,8 @@ export default function Header({
       h-20
       items-center
       justify-between
-      border-b
-      bg-white
+      border-b border-gray-200 dark:border-zinc-800
+      bg-white dark:bg-zinc-900
       px-4
       md:px-8
       shadow-sm
@@ -63,26 +58,7 @@ export default function Header({
           <Menu size={22} />
         </button>
 
-        {/* Desktop */}
-
-        <button
-          onClick={toggleSidebar}
-          className="
-          hidden
-          rounded-lg
-          border
-          p-2
-          transition
-          hover:bg-gray-100
-          lg:flex
-        "
-        >
-          {collapsed ? (
-            <PanelLeftOpen />
-          ) : (
-            <PanelLeftClose />
-          )}
-        </button>
+        
 
         {/* Search */}
 
@@ -99,26 +75,34 @@ export default function Header({
             absolute
             left-3
             top-3
-            text-gray-400
+            text-gray-500 dark:text-gray-300
           "
           />
 
           <input
             placeholder="Search..."
-            className="
-            w-80
-            rounded-xl
-            border
-            bg-gray-50
-            py-2.5
-            pl-10
-            pr-4
-            outline-none
-            transition
-            focus:border-black
-            focus:bg-white
-          "
-          />
+           className="
+              w-80
+              rounded-xl
+              border
+              border-gray-300
+              bg-gray-50
+              text-gray-900
+              placeholder:text-gray-500
+              py-2.5
+              pl-10
+              pr-4
+              outline-none
+              transition
+              focus:border-black
+              focus:bg-white
+              dark:border-zinc-700
+              dark:bg-zinc-800
+              dark:text-white
+              dark:placeholder:text-zinc-400
+              dark:focus:border-white
+              "
+                        />
 
         </div>
 
@@ -139,7 +123,7 @@ export default function Header({
           rounded-lg
           p-2
           transition
-          hover:bg-gray-100
+          hover:bg-gray-100 dark:hover:bg-zinc-800
         "
         >
           <Bell size={20} />
@@ -147,11 +131,11 @@ export default function Header({
 
         <div className="hidden sm:block">
 
-          <p className="text-sm text-gray-500">
+          <p  className="text-sm text-gray-600 dark:text-gray-300">
             Welcome
           </p>
 
-          <p className="font-semibold">
+          <p className="font-semibold text-gray-900 dark:text-white">
             {username}
           </p>
 

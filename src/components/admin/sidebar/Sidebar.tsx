@@ -7,14 +7,21 @@ import SidebarItem from "./SidebarItem";
 
 import { ADMIN_NAVIGATION } from "@/config/admin-navigation";
 
+import {
+  PanelLeftClose,
+  PanelLeftOpen,
+} from "lucide-react";
+
 interface Props {
   collapsed: boolean;
+  toggleSidebar: () => void;
   closeMobile: () => void;
   session: SessionPayload;
 }
 
 export default function Sidebar({
   collapsed,
+ toggleSidebar,
   closeMobile,
   session,
 }: Props) {
@@ -23,9 +30,39 @@ export default function Sidebar({
 
       {/* Logo */}
 
-      <SidebarLogo
-        collapsed={collapsed}
-      />
+      {/* Logo */}
+
+<div className="flex items-center justify-between border-b p-4">
+
+  <SidebarLogo
+    collapsed={collapsed}
+  />
+
+  <button
+    onClick={toggleSidebar}
+    className="
+      hidden
+      lg:flex
+      h-9
+      w-9
+      items-center
+      justify-center
+      rounded-lg
+      border
+      transition
+      hover:bg-gray-100
+      dark:border-zinc-700
+      dark:hover:bg-zinc-800
+    "
+  >
+    {collapsed ? (
+      <PanelLeftOpen size={18} />
+    ) : (
+      <PanelLeftClose size={18} />
+    )}
+  </button>
+
+</div>
 
       {/* Navigation */}
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import type { SessionPayload } from "@/lib/session";
 
 import Sidebar from "../sidebar/Sidebar";
@@ -56,22 +57,23 @@ export default function AdminLayout({
 
       <aside
         className={`
-        hidden
-        lg:flex
-        lg:flex-col
-        border-r
-        bg-white
-        transition-all
-        duration-300
-        ${
-          collapsed
-            ? "w-20"
-            : "w-72"
-        }
-      `}
+          hidden
+          lg:flex
+          lg:flex-col
+          border-r
+          bg-white
+          transition-all
+          duration-300
+          ${
+            collapsed
+              ? "w-20"
+              : "w-72"
+          }
+        `}
       >
         <Sidebar
           collapsed={collapsed}
+          toggleSidebar={toggleSidebar}
           closeMobile={closeMobile}
           session={session}
         />
@@ -90,55 +92,52 @@ export default function AdminLayout({
 
       <aside
         className={`
-        fixed
-        left-0
-        top-0
-        z-50
-        flex
-        h-screen
-        w-72
-        flex-col
-        border-r
-        bg-white
-        shadow-2xl
-        transition-transform
-        duration-300
-        lg:hidden
-        ${
-          mobileOpen
-            ? "translate-x-0"
-            : "-translate-x-full"
-        }
-      `}
+          fixed
+          left-0
+          top-0
+          z-50
+          flex
+          h-screen
+          w-72
+          flex-col
+          border-r
+          bg-white
+          shadow-2xl
+          transition-transform
+          duration-300
+          lg:hidden
+          ${
+            mobileOpen
+              ? "translate-x-0"
+              : "-translate-x-full"
+          }
+        `}
       >
         <Sidebar
           collapsed={false}
+          toggleSidebar={() => {}}
           closeMobile={closeMobile}
           session={session}
         />
       </aside>
 
-      {/* Main */}
+      {/* Main Content */}
 
       <div className="flex flex-1 flex-col overflow-hidden">
 
         <Header
-          collapsed={collapsed}
-          toggleSidebar={
-            toggleSidebar
-          }
           openMobile={openMobile}
           username={session.username}
         />
 
         <main
           className="
-          flex-1
-          overflow-y-auto
-          p-4
-          md:p-6
-          lg:p-8
-        "
+            flex-1
+            overflow-y-auto
+            p-4
+            md:p-6
+            lg:p-8
+          "
         >
           {children}
         </main>

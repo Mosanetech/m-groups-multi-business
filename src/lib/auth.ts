@@ -17,6 +17,8 @@ export const auth = betterAuth({
   },
 
   trustedOrigins: [
-    "http://localhost:3000",
-  ],
+  "http://localhost:3000",
+  "https://m-groups-multi-business.vercel.app",
+],
 });
+

@@ -264,54 +264,31 @@ model FAQ {
 }
 
 model SiteSettings {
+  id String @id
 
-  id                String   @id @default(cuid())
+  companyName     String @default("M Groups")
+  tagline         String?
+  description     String?
+  logo            String?
+  favicon         String?
+  whatsapp        String?
+  phone1          String?
+  phone2          String?
+  email           String?
+  address         String?
+  googleMaps      String?
+  facebook        String?
+  instagram       String?
+  linkedin        String?
+  twitter         String?
+  youtube         String?
+  tiktok          String?
+  metaTitle       String?
+  metaDescription String?
+  keywords        String?
+  footerText      String?
+  copyright       String?
 
-  companyName       String   @default("M Groups")
-  tagline           String?
-
-  description       String?
-
-  logo              String?
-
-  favicon           String?
-
-  whatsapp          String?
-
-  phone1            String?
-
-  phone2            String?
-
-  email             String?
-
-  address           String?
-
-  googleMaps        String?
-
-  facebook          String?
-
-  instagram         String?
-
-  linkedin          String?
-
-  twitter           String?
-
-  youtube           String?
-
-  tiktok            String?
-
-  metaTitle         String?
-
-  metaDescription   String?
-
-  keywords          String?
-
-  footerText        String?
-
-  copyright         String?
-
-  createdAt         DateTime @default(now())
-
-  updatedAt         DateTime @updatedAt
-
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

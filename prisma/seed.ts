@@ -5,29 +5,22 @@ const prisma = new PrismaClient();
 
 async function main() {
   const username =
-    process.env.SEED_ADMIN_USERNAME || "superadmin";
+    process.env.SEED_ADMIN_USERNAME ?? "superadmin";
 
   const email =
-    process.env.SEED_ADMIN_EMAIL || "admin@m360.com";
+    process.env.SEED_ADMIN_EMAIL ?? "admin@m360.com";
 
   const fullName =
-    process.env.SEED_ADMIN_NAME || "System Administrator";
+    process.env.SEED_ADMIN_NAME ?? "System Administrator";
 
   const plainPassword =
-    process.env.SEED_ADMIN_PASSWORD || "Admin@2026";
+    process.env.SEED_ADMIN_PASSWORD ?? "Admin@2026";
 
-  const password = await bcrypt.hash(
-    plainPassword,
-    12
-  );
+  const password = await bcrypt.hash(plainPassword, 12);
 
   await prisma.user.upsert({
-    where: {
-      username,
-    },
-
+    where: { username },
     update: {},
-
     create: {
       username,
       email,
@@ -38,9 +31,20 @@ async function main() {
     },
   });
 
-  console.log(" Super Admin ready");
-}
+  await prisma.siteSettings.upsert({
+    where: {
+      id: "default",
+    },
+    update: {},
+    create: {
+      id: "default",
+      companyName: "M Groups",
+    },
+  });
 
+  console.log(" Super Admin ready");
+  console.log("Site Settings ready");
+}
 main()
   .catch((error) => {
     console.error(error);

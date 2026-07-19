@@ -3,6 +3,10 @@
 import { UseFormReturn } from "react-hook-form";
 import { SettingsFormData } from "@/lib/validators/settings";
 
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<SettingsFormData>;
 }
@@ -23,39 +27,17 @@ export default function GeneralSection({
 
       <div className="grid gap-6">
 
-        <div>
+       <Label>Company Name</Label>
+        <Input {...register("companyName")} />
 
-          <label>Company Name</label>
+        <Label>Tagline</Label>
+        <Input {...register("tagline")} />
 
-          <input
-            {...register("companyName")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
-
-        <div>
-
-          <label>Tagline</label>
-
-          <input
-            {...register("tagline")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
-
-        <div>
-
-          <label>Description</label>
-
-          <textarea
+        <Label>Description</Label>
+        <Textarea
             rows={5}
             {...register("description")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
+        />
 
       </div>
 

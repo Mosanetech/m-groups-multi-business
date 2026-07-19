@@ -8,6 +8,9 @@ import {
 
 import ImageUploader from "@/components/admin/property/upload/ImageUploader";
 
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<BlogFormData>;
 }
@@ -16,23 +19,18 @@ export default function ImageSection({
   form,
 }: Props) {
 
-  const image =
-    form.watch("image");
+  const image = form.watch("image");
 
   return (
 
-    <div className="rounded-xl border bg-white p-6">
+    <section className="space-y-6">
 
-      <h2 className="mb-6 text-xl font-semibold">
+      <h2 className="text-xl font-semibold">
         Featured Image
       </h2>
 
       <ImageUploader
-        images={
-          image
-            ? [image]
-            : []
-        }
+        images={image ? [image] : []}
         onChange={(urls) =>
           form.setValue(
             "image",
@@ -41,22 +39,28 @@ export default function ImageSection({
         }
       />
 
-      <div className="mt-6 flex items-center gap-3">
+      <div className="flex items-center gap-3">
 
-        <input
-          type="checkbox"
-          {...form.register(
-            "published"
-          )}
-        />
+        <Checkbox
+        checked={form.watch("published")}
+        onChange={(e) =>
+          form.setValue(
+            "published",
+            e.target.checked,
+            {
+              shouldValidate: true,
+            }
+          )
+        }
+      />
 
-        <label>
+        <Label>
           Publish immediately
-        </label>
+        </Label>
 
       </div>
 
-    </div>
+    </section>
 
   );
 }

@@ -17,6 +17,8 @@ import BasicInfoSection from "./sections/BasicInfoSection";
 import ImageSection from "./sections/ImageSection";
 import SubmitButton from "./SubmitButton";
 
+import { Card } from "@/components/ui/card";
+
 interface Props {
   testimonial?: any;
 }
@@ -29,14 +31,15 @@ export default function TestimonialForm({
       resolver:
         zodResolver(testimonialSchema) as any,
 
-      defaultValues: testimonial ?? {
-        name: "",
-        position: "",
-        company: "",
-        message: "",
-        image: "",
-        featured: false,
-      },
+      defaultValues:
+        testimonial ?? {
+          name: "",
+          position: "",
+          company: "",
+          message: "",
+          image: "",
+          featured: false,
+        },
     });
 
   async function onSubmit(
@@ -53,19 +56,25 @@ export default function TestimonialForm({
   }
 
   return (
-    <form
-      onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-8"
-    >
-      <BasicInfoSection
-        form={form}
-      />
+    <Card className="p-8">
 
-      <ImageSection
-        form={form}
-      />
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-10"
+      >
 
-      <SubmitButton />
-    </form>
+        <BasicInfoSection
+          form={form}
+        />
+
+        <ImageSection
+          form={form}
+        />
+
+        <SubmitButton />
+
+      </form>
+
+    </Card>
   );
 }

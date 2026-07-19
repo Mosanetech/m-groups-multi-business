@@ -19,6 +19,7 @@ import SocialSection from "./SocialSection";
 import SeoSection from "./SeoSection";
 import FooterSection from "./FooterSection";
 import SaveButton from "./SaveButton";
+import { Card } from "@/components/ui/card";
 interface Props {
   settings: SettingsFormData & {
     id: string;
@@ -47,12 +48,11 @@ export default function SettingsForm({
 }
 
   return (
-
+  <Card className="space-y-8 p-8">
     <form
       onSubmit={form.handleSubmit(submit)}
       className="space-y-8"
     >
-
       <GeneralSection form={form} />
 
       <ContactSection form={form} />
@@ -63,12 +63,9 @@ export default function SettingsForm({
 
       <FooterSection form={form} />
 
-     <SaveButton
-     pending={pending}
-    />
-
+      <SaveButton pending={pending} />
     </form>
-
-  );
+  </Card>
+);
 
 }

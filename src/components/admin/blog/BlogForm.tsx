@@ -18,6 +18,8 @@ import ContentSection from "./sections/ContentSection";
 import ImageSection from "./sections/ImageSection";
 import SubmitButton from "./SubmitButton";
 
+import { Card } from "@/components/ui/card";
+
 interface Props {
   blog?: any;
 }
@@ -25,73 +27,47 @@ interface Props {
 export default function BlogForm({
   blog,
 }: Props) {
+  const form = useForm<BlogFormData>({
+    resolver: zodResolver(blogSchema) as any,
 
-  const form =
-    useForm<BlogFormData>({
-
-      resolver:
-        zodResolver(blogSchema) as any,
-
-      defaultValues: blog ?? {
-
+    defaultValues:
+      blog ?? {
         title: "",
-
         slug: "",
-
         excerpt: "",
-
         content: "",
-
         image: "",
-
         published: true,
-
       },
-
-    });
+  });
 
   async function onSubmit(
     values: BlogFormData
   ) {
-
     if (blog) {
-
-      await updateBlog(
-        blog.id,
-        values
-      );
-
+      await updateBlog(blog.id, values);
     } else {
-
       await createBlog(values);
-
     }
-
   }
 
   return (
+    <Card className="p-8">
 
-    <form
-      onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-8"
-    >
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-10"
+      >
+        <BasicInfoSection form={form} />
 
-      <BasicInfoSection
-        form={form}
-      />
+        <ContentSection form={form} />
 
-      <ContentSection
-        form={form}
-      />
+        <ImageSection form={form} />
 
-      <ImageSection
-        form={form}
-      />
+        <SubmitButton />
 
-      <SubmitButton />
+      </form>
 
-    </form>
-
+    </Card>
   );
-
 }

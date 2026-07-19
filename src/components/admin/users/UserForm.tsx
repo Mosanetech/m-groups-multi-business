@@ -1,5 +1,9 @@
 "use client";
-
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
 import { useForm } from "react-hook-form";
 
 import {
@@ -63,70 +67,106 @@ export default function UserForm({
 
   return (
 
+   <Card>
+
     <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 rounded-xl border bg-white p-8"
-    >
+    onSubmit={handleSubmit(onSubmit)}
+    className="space-y-6"
+    > 
 
-      <input
-        {...register("fullName")}
-        placeholder="Full Name"
-        className="w-full rounded-lg border p-3"
+      <div>
+
+      <Label>
+      Full Name
+      </Label>
+
+      <Input
+      {...register("fullName")}
       />
 
-      <input
+      </div>
+
+     <div>
+
+        <Label>
+        Username
+        </Label>
+
+        <Input
         {...register("username")}
-        placeholder="Username"
-        className="w-full rounded-lg border p-3"
+        />
+
+        </div>
+
+      <div>
+
+      <Label>
+      Email
+      </Label>
+
+      <Input
+      type="email"
+      {...register("email")}
       />
 
-      <input
-        {...register("email")}
-        placeholder="Email"
-        className="w-full rounded-lg border p-3"
-      />
+      </div>
 
-      <input
+       <div>
+
+        <Label>
+        Password
+        </Label>
+
+        <Input
         type="password"
         {...register("password")}
-        placeholder="Password"
-        className="w-full rounded-lg border p-3"
-      />
+        />
 
-      <select
-        {...register("role")}
-        className="w-full rounded-lg border p-3"
+        </div>
+
+      <div>
+
+      <Label>
+      Role
+      </Label>
+
+      <Select
+      {...register("role")}
       >
-        <option value="ADMIN">
-          Admin
-        </option>
 
-        <option value="SUPER_ADMIN">
-          Super Admin
-        </option>
-      </select>
+      <option value="ADMIN">
+      Admin
+      </option>
 
+      <option value="SUPER_ADMIN">
+      Super Admin
+      </option>
+
+      </Select>
+
+      </div>
       {user && (
 
-        <label className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
 
-          <input
-            type="checkbox"
-            defaultChecked={user?.active ?? true}
-            {...register("active")}
-            />
+        <Checkbox
+        {...register("active")}
+        />
 
-          Active
+        <Label className="mb-0">
+        Active
+        </Label>
 
-        </label>
-
+        </div>
       )}
 
       <SubmitButton
         edit={!!user}
       />
 
-    </form>
+   </form>
+
+</Card>
 
   );
 }

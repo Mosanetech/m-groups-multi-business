@@ -3,6 +3,10 @@
 import { UseFormReturn } from "react-hook-form";
 import { SettingsFormData } from "@/lib/validators/settings";
 
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<SettingsFormData>;
 }
@@ -23,72 +27,29 @@ export default function ContactSection({
 
       <div className="grid gap-6 md:grid-cols-2">
 
-        <div>
+       <Label>WhatsApp</Label>
+      <Input {...register("whatsapp")} />
 
-          <label>WhatsApp</label>
+      <Label>Phone 1</Label>
+      <Input {...register("phone1")} />
 
-          <input
-            {...register("whatsapp")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
+      <Label>Phone 2</Label>
+      <Input {...register("phone2")} />
 
-        </div>
+      <Label>Email</Label>
+      <Input
+          type="email"
+          {...register("email")}
+      />
 
-        <div>
+      <Label>Address</Label>
+      <Textarea
+          rows={3}
+          {...register("address")}
+      />
 
-          <label>Phone 1</label>
-
-          <input
-            {...register("phone1")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
-
-        <div>
-
-          <label>Phone 2</label>
-
-          <input
-            {...register("phone2")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
-
-        <div>
-
-          <label>Email</label>
-
-          <input
-            {...register("email")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
-
-        <div className="md:col-span-2">
-
-          <label>Address</label>
-
-          <textarea
-            rows={3}
-            {...register("address")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
-
-        <div className="md:col-span-2">
-
-          <label>Google Maps Link</label>
-
-          <input
-            {...register("googleMaps")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
+      <Label>Google Maps Link</Label>
+      <Input {...register("googleMaps")} />
 
       </div>
 

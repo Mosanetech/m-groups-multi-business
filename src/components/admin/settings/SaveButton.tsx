@@ -12,7 +12,18 @@ export default function SaveButton({
       <button
         type="submit"
         disabled={pending}
-        className="rounded-xl bg-black px-8 py-3 font-semibold text-white"
+        className="
+          rounded-xl
+          bg-black
+          px-8
+          py-3
+          font-semibold
+          text-white
+          transition
+          hover:bg-neutral-800
+          disabled:cursor-not-allowed
+          disabled:opacity-60
+        "
       >
         {pending ? "Saving..." : "Save Settings"}
       </button>

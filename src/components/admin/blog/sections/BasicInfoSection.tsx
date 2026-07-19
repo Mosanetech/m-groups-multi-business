@@ -6,6 +6,10 @@ import {
   BlogFormData,
 } from "@/lib/validators/blog";
 
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<BlogFormData>;
 }
@@ -18,36 +22,47 @@ export default function BasicInfoSection({
 
   return (
 
-    <div className="rounded-xl border bg-white p-6">
+    <section className="space-y-6">
 
-      <h2 className="mb-6 text-xl font-semibold">
+      <h2 className="text-xl font-semibold">
         Basic Information
       </h2>
 
-      <div className="space-y-5">
+      <div>
 
-        <input
+        <Label>Title</Label>
+
+        <Input
           {...register("title")}
-          placeholder="Title"
-          className="w-full rounded-lg border p-3"
-        />
-
-        <input
-          {...register("slug")}
-          placeholder="Slug"
-          className="w-full rounded-lg border p-3"
-        />
-
-        <textarea
-          rows={4}
-          {...register("excerpt")}
-          placeholder="Excerpt"
-          className="w-full rounded-lg border p-3"
+          placeholder="Blog title"
         />
 
       </div>
 
-    </div>
+      <div>
+
+        <Label>Slug</Label>
+
+        <Input
+          {...register("slug")}
+          placeholder="blog-title"
+        />
+
+      </div>
+
+      <div>
+
+        <Label>Excerpt</Label>
+
+        <Textarea
+          rows={4}
+          {...register("excerpt")}
+          placeholder="Short summary..."
+        />
+
+      </div>
+
+    </section>
 
   );
 }

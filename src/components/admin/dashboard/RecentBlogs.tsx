@@ -6,9 +6,9 @@ export default function RecentBlogs({
   blogs,
 }: Props) {
   return (
-    <div className="rounded-2xl border bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
 
-      <h2 className="mb-6 text-2xl font-bold">
+      <h2 className="mb-6 text-2xl font-bold text-gray-900">
         Recent Blog Posts
       </h2>
 
@@ -19,12 +19,17 @@ export default function RecentBlogs({
             No blog posts found.
           </p>
         ) : (
-          blogs.map(blog => (
+          blogs.map((blog) => (
             <div
               key={blog.id}
-              className="border-b pb-3"
+              className="
+                    rounded-lg
+                    p-3
+                    transition-colors
+                    hover:bg-gray-50
+                    "
             >
-              <h3 className="font-semibold">
+              <h3 className="font-semibold text-gray-900">
                 {blog.title}
               </h3>
 

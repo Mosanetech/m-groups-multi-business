@@ -8,6 +8,9 @@ import {
 
 import ImageUploader from "@/components/admin/property/upload/ImageUploader";
 
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<TestimonialFormData>;
 }
@@ -21,12 +24,10 @@ export default function ImageSection({
 
   return (
 
-    <div className="rounded-xl border bg-white p-6">
+    <section className="space-y-6">
 
-      <h2 className="mb-5 text-xl font-semibold">
-
+      <h2 className="text-xl font-semibold">
         Customer Photo
-
       </h2>
 
       <ImageUploader
@@ -38,28 +39,36 @@ export default function ImageSection({
         onChange={(urls) =>
           form.setValue(
             "image",
-            urls[0] ?? ""
+            urls[0] ?? "",
+            {
+              shouldValidate: true,
+            }
           )
         }
       />
 
-      <div className="mt-6 flex items-center gap-3">
+      <div className="flex items-center gap-3">
 
-        <input
-          type="checkbox"
-          {...form.register("featured")}
+        <Checkbox
+          checked={form.watch("featured")}
+          onChange={(e) =>
+            form.setValue(
+              "featured",
+              e.target.checked,
+              {
+                shouldValidate: true,
+              }
+            )
+          }
         />
 
-        <label>
-
+        <Label>
           Featured Testimonial
-
-        </label>
+        </Label>
 
       </div>
 
-    </div>
+    </section>
 
   );
-
 }

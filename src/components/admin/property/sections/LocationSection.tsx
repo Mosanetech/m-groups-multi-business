@@ -3,6 +3,9 @@
 import { UseFormReturn } from "react-hook-form";
 import { PropertyFormData } from "@/lib/validators/property";
 
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<PropertyFormData>;
 }
@@ -10,42 +13,57 @@ interface Props {
 export default function LocationSection({
   form,
 }: Props) {
-
   const { register } = form;
 
   return (
-    <div className="rounded-xl border bg-white p-6">
+    <section className="rounded-2xl border bg-white p-6 shadow-sm">
 
-      <h2 className="mb-6 text-xl font-semibold">
-        Location
-      </h2>
+      <div className="mb-8">
+
+        <h2 className="text-xl font-semibold">
+          Location
+        </h2>
+
+        <p className="mt-1 text-sm text-gray-500">
+          Where is this property located?
+        </p>
+
+      </div>
 
       <div className="grid gap-6 md:grid-cols-2">
 
         <div>
 
-          <label>City</label>
+          <Label htmlFor="city">
+            City
+          </Label>
 
-          <input
+          <Input
+            id="city"
             {...register("city")}
-            className="mt-2 w-full rounded-lg border p-3"
+            placeholder="Blantyre"
+            className="mt-2"
           />
 
         </div>
 
         <div>
 
-          <label>Location</label>
+          <Label htmlFor="location">
+            Address / Location
+          </Label>
 
-          <input
+          <Input
+            id="location"
             {...register("location")}
-            className="mt-2 w-full rounded-lg border p-3"
+            placeholder="Area 43"
+            className="mt-2"
           />
 
         </div>
 
       </div>
 
-    </div>
+    </section>
   );
 }

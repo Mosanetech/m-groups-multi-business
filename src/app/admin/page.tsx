@@ -25,16 +25,15 @@ export default async function AdminDashboard() {
 
       <div className="mb-8">
 
-        <h1 className="text-4xl font-bold">
-          Dashboard
-        </h1>
+          <h1 className="text-4xl font-bold text-gray-900">
+            Dashboard
+          </h1>
 
-        <p className="text-gray-500">
-          Welcome to M Groups CMS
-        </p>
+          <p className="mt-2 text-gray-500">
+            Welcome back.
+          </p>
 
-      </div>
-
+        </div>
        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
 
         <StatCard

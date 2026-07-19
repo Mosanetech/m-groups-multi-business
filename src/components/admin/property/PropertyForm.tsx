@@ -8,19 +8,16 @@ import {
   PropertyFormData,
 } from "@/lib/validators/property";
 
-import {
-  createProperty,
-} from "@/actions/property/create";
-
-import {
-  updateProperty,
-} from "@/actions/property/update";
+import { createProperty } from "@/actions/property/create";
+import { updateProperty } from "@/actions/property/update";
 
 import BasicInfoSection from "./sections/BasicInfoSection";
 import LocationSection from "./sections/LocationSection";
 import PropertyDetailsSection from "./sections/PropertyDetailsSection";
 import ImagesSection from "./sections/ImagesSection";
 import SubmitButton from "./SubmitButton";
+
+import { Card } from "@/components/ui/card";
 
 interface Props {
   property?: any;
@@ -85,21 +82,23 @@ export default function PropertyForm({
   }
 
   return (
-    <form
-      onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-8"
-    >
-      <BasicInfoSection form={form} />
+    <Card className="shadow-sm">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-10"
+      >
+        <BasicInfoSection form={form} />
 
-      <LocationSection form={form} />
+        <LocationSection form={form} />
 
-      <PropertyDetailsSection form={form} />
+        <PropertyDetailsSection form={form} />
 
-      <ImagesSection form={form} />
+        <ImagesSection form={form} />
 
-      <SubmitButton
-        editing={!!property}
-      />
-    </form>
+        <SubmitButton
+          editing={!!property}
+        />
+      </form>
+    </Card>
   );
 }

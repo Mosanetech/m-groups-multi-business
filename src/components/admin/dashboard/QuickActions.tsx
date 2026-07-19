@@ -1,61 +1,84 @@
 import Link from "next/link";
+import {
+  Building2,
+  BriefcaseBusiness,
+  Newspaper,
+  Users,
+  FileText,
+  Mail,
+} from "lucide-react";
+
+const actions = [
+  {
+    title: "Add Property",
+    href: "/admin/properties/new",
+    icon: Building2,
+  },
+  {
+    title: "Add Project",
+    href: "/admin/projects/new",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "New Blog",
+    href: "/admin/blog/new",
+    icon: Newspaper,
+  },
+  {
+    title: "Add Testimonial",
+    href: "/admin/testimonials/new",
+    icon: Users,
+  },
+  {
+    title: "Add FAQ",
+    href: "/admin/faqs/new",
+    icon: FileText,
+  },
+  {
+    title: "Messages",
+    href: "/admin/messages",
+    icon: Mail,
+  },
+];
 
 export default function QuickActions() {
   return (
-
-    <div className="rounded-xl border bg-white p-6">
-
-      <h2 className="mb-5 text-xl font-semibold">
+    <div className="rounded-2xl border bg-white p-6 shadow-sm">
+      <h2 className="mb-6 text-2xl font-bold text-gray-900">
         Quick Actions
       </h2>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {actions.map((action) => {
+          const Icon = action.icon;
 
-        <Link
-          href="/admin/properties/new"
-          className="rounded-lg border p-4 hover:bg-gray-50"
-        >
-          🏠 Add Property
-        </Link>
+          return (
+            <Link
+              key={action.href}
+              href={action.href}
+              className="
+                flex
+                items-center
+                gap-4
+                rounded-xl
+                border
+                p-4
+                transition-all
+                hover:border-black
+                hover:shadow-md
+              "
+            >
+              <div className="rounded-xl bg-black p-3 text-white">
+                <Icon size={20} />
+              </div>
 
-        <Link
-          href="/admin/projects/new"
-          className="rounded-lg border p-4 hover:bg-gray-50"
-        >
-          💻 Add Project
-        </Link>
-
-        <Link
-          href="/admin/blog/new"
-          className="rounded-lg border p-4 hover:bg-gray-50"
-        >
-          📝 New Blog
-        </Link>
-
-        <Link
-          href="/admin/testimonials/new"
-          className="rounded-lg border p-4 hover:bg-gray-50"
-        >
-          ⭐ Add Testimonial
-        </Link>
-
-        <Link
-          href="/admin/faqs/new"
-          className="rounded-lg border p-4 hover:bg-gray-50"
-        >
-          ❓ Add FAQ
-        </Link>
-
-        <Link
-          href="/admin/messages"
-          className="rounded-lg border p-4 hover:bg-gray-50"
-        >
-          📩 View Messages
-        </Link>
-
+              <span className="font-medium text-gray-900">
+                {action.title}
+              </span>
+            </Link>
+          );
+        })}
       </div>
-
     </div>
-
   );
 }

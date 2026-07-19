@@ -3,6 +3,10 @@
 import { UseFormReturn } from "react-hook-form";
 import { SettingsFormData } from "@/lib/validators/settings";
 
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<SettingsFormData>;
 }
@@ -23,28 +27,14 @@ export default function FooterSection({
 
       <div className="grid gap-6">
 
-        <div>
-
-          <label>Footer Text</label>
-
-          <textarea
+       <Label>Footer Text</Label>
+        <Textarea
             rows={4}
             {...register("footerText")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
+        />
 
-        </div>
-
-        <div>
-
-          <label>Copyright</label>
-
-          <input
-            {...register("copyright")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
+        <Label>Copyright</Label>
+        <Input {...register("copyright")} />
 
       </div>
 

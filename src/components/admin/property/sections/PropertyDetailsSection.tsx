@@ -2,7 +2,11 @@
 
 import { UseFormReturn } from "react-hook-form";
 import { PropertyFormData } from "@/lib/validators/property";
-import ImageUploader from "../upload/ImageUploader";
+
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 interface Props {
   form: UseFormReturn<PropertyFormData>;
@@ -11,30 +15,33 @@ interface Props {
 export default function PropertyDetailsSection({
   form,
 }: Props) {
-  const {
-    register,
-    watch,
-    setValue,
-    formState: { errors },
-  } = form;
 
-  const images = watch("images");
+  const { register } = form;
 
   return (
-    <div className="rounded-xl border bg-white p-6">
+    <section className="rounded-2xl border bg-white p-6 shadow-sm">
 
-      <h2 className="mb-6 text-xl font-semibold">
-        Property Details
-      </h2>
+      <div className="mb-8">
+
+        <h2 className="text-xl font-semibold">
+          Property Details
+        </h2>
+
+        <p className="mt-1 text-sm text-gray-500">
+          Technical specifications of the property.
+        </p>
+
+      </div>
 
       <div className="grid gap-6 md:grid-cols-2">
 
         <div>
-          <label>Property Type</label>
 
-          <select
+          <Label>Property Type</Label>
+
+          <Select
             {...register("type")}
-            className="mt-2 w-full rounded-lg border p-3"
+            className="mt-2"
           >
             <option value="HOUSE">House</option>
             <option value="APARTMENT">Apartment</option>
@@ -43,76 +50,88 @@ export default function PropertyDetailsSection({
             <option value="SHOP">Shop</option>
             <option value="LAND">Land</option>
             <option value="WAREHOUSE">Warehouse</option>
-          </select>
+          </Select>
+
         </div>
 
         <div>
-          <label>Status</label>
 
-          <select
+          <Label>Status</Label>
+
+          <Select
             {...register("status")}
-            className="mt-2 w-full rounded-lg border p-3"
+            className="mt-2"
           >
             <option value="FOR_SALE">For Sale</option>
             <option value="TO_LET">To Let</option>
             <option value="SOLD">Sold</option>
             <option value="RENTED">Rented</option>
-          </select>
+          </Select>
+
         </div>
 
         <div>
-          <label>Price</label>
 
-          <input
+          <Label>Price (MWK)</Label>
+
+          <Input
             type="number"
             {...register("price")}
-            className="mt-2 w-full rounded-lg border p-3"
+            className="mt-2"
           />
+
         </div>
 
         <div>
-          <label>Bedrooms</label>
 
-          <input
+          <Label>Bedrooms</Label>
+
+          <Input
             type="number"
             {...register("bedrooms")}
-            className="mt-2 w-full rounded-lg border p-3"
+            className="mt-2"
           />
+
         </div>
 
         <div>
-          <label>Bathrooms</label>
 
-          <input
+          <Label>Bathrooms</Label>
+
+          <Input
             type="number"
             {...register("bathrooms")}
-            className="mt-2 w-full rounded-lg border p-3"
+            className="mt-2"
           />
+
         </div>
 
         <div>
-          <label>Area (㎡)</label>
 
-          <input
+          <Label>Area (㎡)</Label>
+
+          <Input
             type="number"
             {...register("area")}
-            className="mt-2 w-full rounded-lg border p-3"
+            className="mt-2"
           />
+
         </div>
 
       </div>
 
-      <div className="mt-6 flex items-center gap-3">
+      <div className="mt-8 flex items-center gap-3">
 
-        <input
-          type="checkbox"
+        <Checkbox
           {...register("featured")}
         />
 
-        <label>Featured Property</label>
+        <Label className="cursor-pointer">
+          Featured Property
+        </Label>
 
       </div>
 
-    </div>
+    </section>
   );
 }

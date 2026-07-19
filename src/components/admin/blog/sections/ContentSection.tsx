@@ -6,6 +6,9 @@ import {
   BlogFormData,
 } from "@/lib/validators/blog";
 
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+
 interface Props {
   form: UseFormReturn<BlogFormData>;
 }
@@ -16,19 +19,25 @@ export default function ContentSection({
 
   return (
 
-    <div className="rounded-xl border bg-white p-6">
+    <section className="space-y-6">
 
-      <h2 className="mb-6 text-xl font-semibold">
+      <h2 className="text-xl font-semibold">
         Blog Content
       </h2>
 
-      <textarea
-        rows={18}
-        {...form.register("content")}
-        className="w-full rounded-lg border p-4"
-      />
+      <div>
 
-    </div>
+        <Label>Content</Label>
+
+        <Textarea
+          rows={18}
+          {...form.register("content")}
+          placeholder="Write your article..."
+        />
+
+      </div>
+
+    </section>
 
   );
 }

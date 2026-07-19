@@ -1,8 +1,13 @@
 "use client";
 
 import { UseFormReturn } from "react-hook-form";
-
 import { ProjectFormData } from "@/lib/validators/project";
+
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { FormSection } from "@/components/ui/form-section";
+import { FormError } from "@/components/ui/form-error";
 
 interface Props {
   form: UseFormReturn<ProjectFormData>;
@@ -17,57 +22,67 @@ export default function BasicInfoSection({
   } = form;
 
   return (
-    <div className="rounded-xl border bg-white p-6">
+    <FormSection
+      title="Basic Information"
+      description="General information about the project."
+    >
+      <div className="grid gap-6">
 
-      <h2 className="mb-6 text-xl font-semibold">
-        Basic Information
-      </h2>
+        <div className="grid gap-6 md:grid-cols-2">
 
-      <div className="space-y-6">
+          <div>
 
-        <div>
+            <Label htmlFor="title">
+              Project Title
+            </Label>
 
-          <label>Project Title</label>
+            <Input
+              id="title"
+              {...register("title")}
+              placeholder="School Management System"
+              className="mt-2"
+            />
 
-          <input
-            {...register("title")}
-            className="mt-2 w-full rounded-lg border p-3"
-          />
+            <FormError
+              message={errors.title?.message}
+            />
 
-          {errors.title && (
-            <p className="mt-1 text-sm text-red-500">
-              {errors.title.message}
-            </p>
-          )}
+          </div>
+
+          <div>
+
+            <Label htmlFor="slug">
+              Slug
+            </Label>
+
+            <Input
+              id="slug"
+              {...register("slug")}
+              placeholder="school-management-system"
+              className="mt-2"
+            />
+
+            <FormError
+              message={errors.slug?.message}
+            />
+
+          </div>
 
         </div>
 
         <div>
 
-          <label>Slug</label>
+          <Label>
+            Category
+          </Label>
 
-          <input
-            {...register("slug")}
-            className="mt-2 w-full rounded-lg border p-3"
-          />
-
-          {errors.slug && (
-            <p className="mt-1 text-sm text-red-500">
-              {errors.slug.message}
-            </p>
-          )}
-
-        </div>
-
-        <div>
-
-          <label>Category</label>
-
-          <select
+          <Select
             {...register("category")}
-            className="mt-2 w-full rounded-lg border p-3"
+            className="mt-2"
           >
-            <option value="ICT">ICT</option>
+            <option value="ICT">
+              ICT
+            </option>
 
             <option value="REAL_ESTATE">
               Real Estate
@@ -85,12 +100,11 @@ export default function BasicInfoSection({
               Education
             </option>
 
-          </select>
+          </Select>
 
         </div>
 
       </div>
-
-    </div>
+    </FormSection>
   );
 }

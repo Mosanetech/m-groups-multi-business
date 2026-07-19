@@ -21,6 +21,7 @@ import DescriptionSection from "./sections/DescriptionSection";
 import LinksSection from "./sections/LinksSection";
 import ImageSection from "./sections/ImageSection";
 import SubmitButton from "./SubmitButton";
+import { Card } from "@/components/ui/card";
 
 interface Props {
   project?: any;
@@ -81,13 +82,12 @@ export default function ProjectForm({
 
   }
 
-  return (
-
+ return (
+  <Card className="shadow-sm">
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-8"
+      className="space-y-10"
     >
-
       <BasicInfoSection form={form} />
 
       <DescriptionSection form={form} />
@@ -97,9 +97,8 @@ export default function ProjectForm({
       <ImageSection form={form} />
 
       <SubmitButton />
-
     </form>
-
-  );
+  </Card>
+);
 
 }

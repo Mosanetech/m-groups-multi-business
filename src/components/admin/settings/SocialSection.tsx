@@ -3,6 +3,9 @@
 import { UseFormReturn } from "react-hook-form";
 import { SettingsFormData } from "@/lib/validators/settings";
 
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<SettingsFormData>;
 }
@@ -23,59 +26,23 @@ export default function SocialSection({
 
       <div className="grid gap-6 md:grid-cols-2">
 
-        <div>
-          <label>Facebook</label>
+        <Label>Facebook</Label>
+        <Input {...register("facebook")} />
 
-          <input
-            {...register("facebook")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-        </div>
+        <Label>Instagram</Label>
+        <Input {...register("instagram")} />
 
-        <div>
-          <label>Instagram</label>
+        <Label>LinkedIn</Label>
+        <Input {...register("linkedin")} />
 
-          <input
-            {...register("instagram")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-        </div>
+        <Label>X (Twitter)</Label>
+        <Input {...register("twitter")} />
 
-        <div>
-          <label>LinkedIn</label>
+        <Label>YouTube</Label>
+        <Input {...register("youtube")} />
 
-          <input
-            {...register("linkedin")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-        </div>
-
-        <div>
-          <label>X (Twitter)</label>
-
-          <input
-            {...register("twitter")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-        </div>
-
-        <div>
-          <label>YouTube</label>
-
-          <input
-            {...register("youtube")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-        </div>
-
-        <div>
-          <label>TikTok</label>
-
-          <input
-            {...register("tiktok")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-        </div>
+        <Label>TikTok</Label>
+        <Input {...register("tiktok")} />
 
       </div>
 

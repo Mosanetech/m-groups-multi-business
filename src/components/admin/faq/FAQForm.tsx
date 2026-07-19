@@ -16,6 +16,8 @@ import {
 import BasicInfoSection from "./sections/BasicInfoSection";
 import SubmitButton from "./SubmitButton";
 
+import { Card } from "@/components/ui/card";
+
 interface Props {
   faq?: any;
 }
@@ -23,51 +25,43 @@ interface Props {
 export default function FAQForm({
   faq,
 }: Props) {
+  const form = useForm<FAQFormData>({
+    resolver: zodResolver(faqSchema) as any,
 
-  const form =
-    useForm<FAQFormData>({
-      resolver:
-        zodResolver(faqSchema) as any,
-
-      defaultValues:
-        faq ?? {
-          question: "",
-          answer: "",
-          order: 0,
-        },
-    });
+    defaultValues:
+      faq ?? {
+        question: "",
+        answer: "",
+        order: 0,
+      },
+  });
 
   async function onSubmit(
     values: FAQFormData
   ) {
-
     if (faq) {
-
       await updateFAQ(
         faq.id,
         values
       );
-
     } else {
-
       await createFAQ(values);
-
     }
-
   }
 
   return (
-    <form
-      onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-8"
-    >
+    <Card className="p-8">
 
-      <BasicInfoSection
-        form={form}
-      />
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8"
+      >
+        <BasicInfoSection form={form} />
 
-      <SubmitButton />
+        <SubmitButton />
 
-    </form>
+      </form>
+
+    </Card>
   );
 }

@@ -6,6 +6,8 @@ import { ProjectFormData } from "@/lib/validators/project";
 
 import ImageUploader from "../../property/upload/ImageUploader";
 
+import { FormSection } from "@/components/ui/form-section";
+
 interface Props {
   form: UseFormReturn<ProjectFormData>;
 }
@@ -13,25 +15,30 @@ interface Props {
 export default function ImageSection({
   form,
 }: Props) {
+
   const image = form.watch("image");
 
   return (
-    <div className="rounded-xl border bg-white p-6">
 
-      <h2 className="mb-6 text-xl font-semibold">
-        Project Image
-      </h2>
+    <FormSection
+      title="Project Image"
+      description="Upload the project's featured image."
+    >
 
       <ImageUploader
         images={image ? [image] : []}
-        onChange={(urls) => {
+        onChange={(urls) =>
           form.setValue(
             "image",
-            urls[0] ?? ""
-          );
-        }}
+            urls[0] ?? "",
+            {
+              shouldValidate: true,
+            }
+          )
+        }
       />
 
-    </div>
+    </FormSection>
+
   );
 }

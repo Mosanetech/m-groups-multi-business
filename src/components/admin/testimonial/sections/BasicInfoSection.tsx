@@ -6,6 +6,10 @@ import {
   TestimonialFormData,
 } from "@/lib/validators/testimonial";
 
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<TestimonialFormData>;
 }
@@ -18,41 +22,58 @@ export default function BasicInfoSection({
 
   return (
 
-    <div className="rounded-xl border bg-white p-6 space-y-5">
+    <section className="space-y-6">
 
       <h2 className="text-xl font-semibold">
-
         Customer Information
-
       </h2>
 
-      <input
-        {...register("name")}
-        placeholder="Customer Name"
-        className="w-full rounded-lg border p-3"
-      />
+      <div>
 
-      <input
-        {...register("position")}
-        placeholder="Position"
-        className="w-full rounded-lg border p-3"
-      />
+        <Label>Name</Label>
 
-      <input
-        {...register("company")}
-        placeholder="Company"
-        className="w-full rounded-lg border p-3"
-      />
+        <Input
+          {...register("name")}
+          placeholder="Customer name"
+        />
 
-      <textarea
-        rows={6}
-        {...register("message")}
-        placeholder="Customer Testimonial"
-        className="w-full rounded-lg border p-3"
-      />
+      </div>
 
-    </div>
+      <div>
+
+        <Label>Position</Label>
+
+        <Input
+          {...register("position")}
+          placeholder="Managing Director"
+        />
+
+      </div>
+
+      <div>
+
+        <Label>Company</Label>
+
+        <Input
+          {...register("company")}
+          placeholder="Company name"
+        />
+
+      </div>
+
+      <div>
+
+        <Label>Testimonial</Label>
+
+        <Textarea
+          rows={6}
+          {...register("message")}
+          placeholder="Customer testimonial..."
+        />
+
+      </div>
+
+    </section>
 
   );
-
 }

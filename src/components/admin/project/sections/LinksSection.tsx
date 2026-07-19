@@ -4,6 +4,10 @@ import { UseFormReturn } from "react-hook-form";
 
 import { ProjectFormData } from "@/lib/validators/project";
 
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { FormSection } from "@/components/ui/form-section";
+
 interface Props {
   form: UseFormReturn<ProjectFormData>;
 }
@@ -11,63 +15,75 @@ interface Props {
 export default function LinksSection({
   form,
 }: Props) {
+
   const { register } = form;
 
   return (
-    <div className="rounded-xl border bg-white p-6">
+    <FormSection
+      title="Project Links"
+      description="Optional external links."
+    >
 
-      <h2 className="mb-6 text-xl font-semibold">
-        Project Links
-      </h2>
-
-      <div className="grid gap-6">
+      <div className="grid gap-6 md:grid-cols-2">
 
         <div>
 
-          <label>Website</label>
+          <Label>
+            Website
+          </Label>
 
-          <input
+          <Input
             {...register("websiteUrl")}
-            className="mt-2 w-full rounded-lg border p-3"
+            placeholder="https://..."
+            className="mt-2"
           />
 
         </div>
 
         <div>
 
-          <label>GitHub</label>
+          <Label>
+            GitHub
+          </Label>
 
-          <input
+          <Input
             {...register("githubUrl")}
-            className="mt-2 w-full rounded-lg border p-3"
+            placeholder="https://github.com/..."
+            className="mt-2"
           />
 
         </div>
 
         <div>
 
-          <label>Google Play</label>
+          <Label>
+            Google Play
+          </Label>
 
-          <input
+          <Input
             {...register("playStoreUrl")}
-            className="mt-2 w-full rounded-lg border p-3"
+            placeholder="https://play.google.com/..."
+            className="mt-2"
           />
 
         </div>
 
         <div>
 
-          <label>App Store</label>
+          <Label>
+            App Store
+          </Label>
 
-          <input
+          <Input
             {...register("appStoreUrl")}
-            className="mt-2 w-full rounded-lg border p-3"
+            placeholder="https://apps.apple.com/..."
+            className="mt-2"
           />
 
         </div>
 
       </div>
 
-    </div>
+    </FormSection>
   );
 }

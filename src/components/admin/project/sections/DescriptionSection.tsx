@@ -4,6 +4,11 @@ import { UseFormReturn } from "react-hook-form";
 
 import { ProjectFormData } from "@/lib/validators/project";
 
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { FormSection } from "@/components/ui/form-section";
+import { FormError } from "@/components/ui/form-error";
+
 interface Props {
   form: UseFormReturn<ProjectFormData>;
 }
@@ -11,58 +16,60 @@ interface Props {
 export default function DescriptionSection({
   form,
 }: Props) {
+
   const {
     register,
     formState: { errors },
   } = form;
 
   return (
-    <div className="rounded-xl border bg-white p-6">
-
-      <h2 className="mb-6 text-xl font-semibold">
-        Description
-      </h2>
+    <FormSection
+      title="Description"
+      description="Describe your project."
+    >
 
       <div className="space-y-6">
 
         <div>
 
-          <label>Short Description</label>
+          <Label>
+            Short Description
+          </Label>
 
-          <textarea
-            rows={3}
+          <Textarea
+            rows={4}
             {...register("shortDescription")}
-            className="mt-2 w-full rounded-lg border p-3"
+            placeholder="A brief summary..."
+            className="mt-2 resize-none"
           />
 
-          {errors.shortDescription && (
-            <p className="mt-1 text-sm text-red-500">
-              {errors.shortDescription.message}
-            </p>
-          )}
+          <FormError
+            message={errors.shortDescription?.message}
+          />
 
         </div>
 
         <div>
 
-          <label>Full Description</label>
+          <Label>
+            Full Description
+          </Label>
 
-          <textarea
+          <Textarea
             rows={8}
             {...register("description")}
-            className="mt-2 w-full rounded-lg border p-3"
+            placeholder="Detailed project description..."
+            className="mt-2 resize-none"
           />
 
-          {errors.description && (
-            <p className="mt-1 text-sm text-red-500">
-              {errors.description.message}
-            </p>
-          )}
+          <FormError
+            message={errors.description?.message}
+          />
 
         </div>
 
       </div>
 
-    </div>
+    </FormSection>
   );
 }

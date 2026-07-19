@@ -3,6 +3,10 @@
 import { UseFormReturn } from "react-hook-form";
 import { SettingsFormData } from "@/lib/validators/settings";
 
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+
 interface Props {
   form: UseFormReturn<SettingsFormData>;
 }
@@ -23,40 +27,20 @@ export default function SeoSection({
 
       <div className="grid gap-6">
 
-        <div>
+        <Label>Meta Title</Label>
+          <Input {...register("metaTitle")} />
 
-          <label>Meta Title</label>
-
-          <input
-            {...register("metaTitle")}
-            className="mt-2 w-full rounded-xl border p-3"
+          <Label>Meta Description</Label>
+          <Textarea
+              rows={4}
+              {...register("metaDescription")}
           />
 
-        </div>
-
-        <div>
-
-          <label>Meta Description</label>
-
-          <textarea
-            rows={4}
-            {...register("metaDescription")}
-            className="mt-2 w-full rounded-xl border p-3"
+          <Label>Keywords</Label>
+          <Textarea
+              rows={3}
+              {...register("keywords")}
           />
-
-        </div>
-
-        <div>
-
-          <label>Keywords</label>
-
-          <textarea
-            rows={3}
-            {...register("keywords")}
-            className="mt-2 w-full rounded-xl border p-3"
-          />
-
-        </div>
 
       </div>
 

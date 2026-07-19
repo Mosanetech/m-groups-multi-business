@@ -23,6 +23,8 @@ export async function updateFAQ(
 
   });
 
-  revalidatePath("/admin/faqs");
+ revalidatePath("/admin/faqs");
+  revalidatePath("/");
+  revalidatePath("/faqs");
 
 }

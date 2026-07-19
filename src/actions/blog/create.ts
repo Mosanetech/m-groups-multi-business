@@ -19,4 +19,6 @@ export async function createBlog(
   });
 
   revalidatePath("/admin/blog");
+  revalidatePath("/");
+  revalidatePath("/blog");
 }

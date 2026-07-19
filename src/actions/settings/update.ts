@@ -60,6 +60,8 @@ export async function updateSettings(
     });
   }
 
-  revalidatePath("/");
   revalidatePath("/admin/settings");
+  revalidatePath("/");
+  revalidatePath("/about");
+  revalidatePath("/contact");
 }}

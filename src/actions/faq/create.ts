@@ -17,5 +17,7 @@ export async function createFAQ(
   });
 
   revalidatePath("/admin/faqs");
+  revalidatePath("/");
+  revalidatePath("/faqs");
 
 }

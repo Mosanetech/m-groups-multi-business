@@ -16,4 +16,5 @@ export async function markMessageRead(
   });
 
   revalidatePath("/admin/messages");
+  revalidatePath("/contact");
 }

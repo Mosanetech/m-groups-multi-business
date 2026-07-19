@@ -19,4 +19,6 @@ export async function createProject(
   });
 
   revalidatePath("/admin/projects");
+  revalidatePath("/");
+  revalidatePath("/projects");
 }

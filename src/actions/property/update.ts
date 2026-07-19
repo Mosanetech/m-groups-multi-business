@@ -42,4 +42,6 @@ export async function updateProperty(
   });
 
   revalidatePath("/admin/properties");
+  revalidatePath("/");
+  revalidatePath("/properties");
 }

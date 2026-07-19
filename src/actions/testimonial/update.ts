@@ -27,5 +27,7 @@ export async function updateTestimonial(
   });
 
   revalidatePath("/admin/testimonials");
+  revalidatePath("/");
+  revalidatePath("/testimonials");
 
 }

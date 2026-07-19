@@ -33,4 +33,6 @@ export async function createProperty(data: unknown) {
   });
 
   revalidatePath("/admin/properties");
+  revalidatePath("/");
+  revalidatePath("/properties");
 }

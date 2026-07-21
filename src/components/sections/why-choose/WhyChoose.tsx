@@ -50,7 +50,7 @@ export default function WhyChoose() {
             Why Businesses Choose M Groups
           </h2>
 
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-6 text-lg text-foreground/80">
             We bring together multiple professional services under one
             trusted brand, making it easier for individuals and businesses
             to succeed.

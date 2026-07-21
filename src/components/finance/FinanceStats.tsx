@@ -57,7 +57,7 @@ export default function FinanceStats() {
 
               </h3>
 
-              <p className="mt-3 text-muted-foreground">
+              <p className="mt-3 text-foreground/80">
 
                 {item.description}
 

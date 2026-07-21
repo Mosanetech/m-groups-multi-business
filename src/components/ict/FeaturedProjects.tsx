@@ -24,7 +24,7 @@ export default async function FeaturedProjects() {
           Featured Projects
         </h2>
 
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-2 text-foreground/80">
           Some of our best ICT solutions.
         </p>
 

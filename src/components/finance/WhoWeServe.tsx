@@ -44,7 +44,7 @@ export default function WhoWeServe() {
           Who We Serve
         </h2>
 
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3 text-foreground/80">
           We provide financial and accounting services across different sectors.
         </p>
 

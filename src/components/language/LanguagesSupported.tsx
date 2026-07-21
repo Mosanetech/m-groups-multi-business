@@ -19,7 +19,7 @@ export default function LanguagesSupported() {
           Languages We Support
         </h2>
 
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3 text-foreground/80">
           We provide services across Malawi's major languages together with English and sign language.
         </p>
 

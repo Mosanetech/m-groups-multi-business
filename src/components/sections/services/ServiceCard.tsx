@@ -27,7 +27,7 @@ export default function ServiceCard({
                 {title}
             </h3>
 
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-foreground/80">
                 {description}
             </p>
 

@@ -64,7 +64,7 @@ export default async function PropertyGrid({
 
   if (properties.length === 0) {
     return (
-      <p className="text-center text-muted-foreground">
+      <p className="text-center text-foreground/80">
         No properties found.
       </p>
     );

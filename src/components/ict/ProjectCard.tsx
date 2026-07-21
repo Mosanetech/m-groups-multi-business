@@ -35,7 +35,7 @@ export default function ProjectCard({
           {project.title}
         </h3>
 
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3 text-foreground/80">
           {project.shortDescription}
         </p>
 

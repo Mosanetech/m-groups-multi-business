@@ -41,7 +41,7 @@ export default async function About() {
 
             </h2>
 
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            <p className="mt-6 text-lg leading-8 text-foreground/80">
 
               {settings.footerText}
 

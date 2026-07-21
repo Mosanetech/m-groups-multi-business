@@ -20,11 +20,11 @@ export default async function ContactPage() {
         description="We would love to hear from you."
       />
 
-      <section className="py-24">
+     <section className="py-16 lg:py-24">
 
         <div className="container mx-auto">
 
-          <div className="mx-auto max-w-4xl rounded-3xl border bg-card p-10">
+         <div className="mx-auto max-w-4xl rounded-3xl border bg-card p-6 sm:p-8 lg:p-10">
 
             <h2 className="text-3xl font-bold">
 

@@ -26,7 +26,7 @@ export default function ProjectInfo({
 
       </h1>
 
-      <p className="mt-8 leading-8 text-muted-foreground">
+      <p className="mt-8 leading-8 text-foreground/80">
 
         {project.description}
 

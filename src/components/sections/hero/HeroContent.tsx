@@ -58,7 +58,7 @@ export default async function HeroContent() {
 
       </h1>
 
-      <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
+      <p className="mt-6 max-w-xl text-lg leading-8 text-foreground/80">
 
         {settings.footerText}
 

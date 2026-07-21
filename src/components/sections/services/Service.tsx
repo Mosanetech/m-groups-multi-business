@@ -18,7 +18,7 @@ export default function Services() {
                         Under One Brand
                     </h2>
 
-                    <p className="mt-6 text-lg text-muted-foreground">
+                    <p className="mt-6 text-lg text-foreground/80">
                         Explore our professional
                         business divisions designed
                         to serve individuals,

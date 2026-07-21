@@ -15,7 +15,7 @@ export default async function Footer() {
 
     <footer className="border-t bg-muted/30">
 
-      <div className="container mx-auto py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid gap-12 lg:grid-cols-4">
 
@@ -28,7 +28,7 @@ export default async function Footer() {
               {settings.companyName}
             </Link>
 
-            <p className="mt-6 leading-7 text-muted-foreground">
+            <p className="mt-6 leading-7 text-foreground/80">
 
               {settings.footerText ||
 

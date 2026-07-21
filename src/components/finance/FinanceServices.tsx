@@ -11,7 +11,7 @@ export default function FinanceServices() {
           Our Finance Services
         </h2>
 
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3 text-foreground/80">
           Professional financial management and advisory solutions for businesses,
           NGOs, institutions and government organizations.
         </p>

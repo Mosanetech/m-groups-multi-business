@@ -17,7 +17,7 @@ export default function SectionHeader({
         </h1>
 
         {description && (
-          <p className="mt-1 text-gray-500">
+          <p className="mt-1 text-foreground/80">
             {description}
           </p>
         )}

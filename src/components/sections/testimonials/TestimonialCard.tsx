@@ -14,7 +14,7 @@ export default function TestimonialCard({
 
         <div className="rounded-3xl border bg-card p-8">
 
-            <p className="italic text-muted-foreground">
+            <p className="italic text-foreground/80">
                 "{message}"
             </p>
 

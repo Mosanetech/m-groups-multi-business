@@ -39,7 +39,7 @@ export default function Logo({
           M Groups
         </h2>
 
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-foreground/80">
           Building Better Communities
         </p>
       </div>

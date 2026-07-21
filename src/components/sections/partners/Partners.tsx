@@ -32,7 +32,7 @@ Trusted By
 
 key={partner}
 
-className="flex h-28 items-center justify-center rounded-2xl border bg-card font-semibold text-muted-foreground"
+className="flex h-28 items-center justify-center rounded-2xl border bg-card font-semibold text-foreground/80"
 
 >
 

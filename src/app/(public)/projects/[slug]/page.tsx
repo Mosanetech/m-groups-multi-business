@@ -77,7 +77,7 @@ export default async function ProjectPage({
 
           </h1>
 
-          <p className="mt-8 text-lg leading-8 text-muted-foreground">
+          <p className="mt-8 text-lg leading-8 text-foreground/80">
 
             {project.description}
 

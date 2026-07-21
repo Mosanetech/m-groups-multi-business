@@ -31,21 +31,20 @@ export default async function BlogDetailsPage({
 
   return (
 
-    <main className="container mx-auto py-20">
-
-      <h1 className="text-5xl font-bold">
+    <main className="mx-auto max-w-6xl py-12 lg:py-20">
+      <h1 className="text-3xl font-bold lg:text-5xl">
 
         {post.title}
 
       </h1>
 
-      <p className="mt-6 text-muted-foreground">
+      <p className="mt-8 text-base leading-8 text-foreground/80 lg:text-lg">
 
         {post.createdAt.toLocaleDateString()}
 
       </p>
 
-      <div className="relative mt-12 h-[500px]">
+      <div className="relative mt-8 h-72 md:h-[420px] lg:h-[500px]">
 
         <Image
       src={post.image}

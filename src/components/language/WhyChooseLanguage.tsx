@@ -40,7 +40,7 @@ export default function WhyChooseLanguage() {
           Why Choose M Groups
         </h2>
 
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3 text-foreground/80">
           Reliable language services tailored for businesses, institutions and individuals.
         </p>
       </div>
@@ -62,7 +62,7 @@ export default function WhyChooseLanguage() {
                 {reason.title}
               </h3>
 
-              <p className="mt-4 text-muted-foreground">
+              <p className="mt-4 text-foreground/80">
                 {reason.description}
               </p>
             </div>

@@ -12,7 +12,7 @@ export default function ICTServices() {
 
         </h2>
 
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3 text-foreground/80">
 
           Technology solutions tailored for businesses,
           organizations and individuals.
@@ -46,7 +46,7 @@ export default function ICTServices() {
 
               </h3>
 
-              <p className="mt-4 text-muted-foreground">
+              <p className="mt-4 text-foreground/80">
 
                 {service.description}
 

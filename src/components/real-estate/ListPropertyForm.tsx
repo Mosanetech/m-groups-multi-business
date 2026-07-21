@@ -10,7 +10,7 @@ export default function ListPropertyForm() {
         List Your Property
       </h2>
 
-      <p className="mt-2 text-muted-foreground">
+      <p className="mt-2 text-foreground/80">
         Want to sell or rent your property? Submit the details below.
       </p>
 

@@ -19,7 +19,7 @@ export function FormSection({
         </h2>
 
         {description && (
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-foreground/80">
             {description}
           </p>
         )}

@@ -66,7 +66,7 @@ export default function PropertyCard({
 
         </h3>
 
-        <div className="mt-3 flex items-center gap-2 text-muted-foreground">
+        <div className="mt-3 flex items-center gap-2 text-foreground/80">
 
           <MapPin size={18} />
 

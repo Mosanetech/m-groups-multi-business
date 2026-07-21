@@ -28,7 +28,7 @@ export default function SectionTitle({
       </h2>
 
       {description && (
-        <p className="mt-6 text-lg leading-8 text-muted-foreground">
+        <p className="mt-6 text-lg leading-8 text-foreground/80">
           {description}
         </p>
       )}

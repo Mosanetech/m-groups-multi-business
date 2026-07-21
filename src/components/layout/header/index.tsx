@@ -41,7 +41,7 @@ export default function Header() {
       className={cn(
         "fixed left-0 top-0 z-50 w-full transition-all duration-300",
         isScrolled
-          ? "border-b border-border/60 bg-background/65 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
+          ? "border-b border-border/60 bg-background/90 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
           : "bg-transparent"
       )}
     >

@@ -22,7 +22,7 @@ export default function NavLinks() {
               "group relative py-2 text-sm font-medium transition-colors",
               active
                 ? "text-primary"
-                : "text-muted-foreground hover:text-foreground"
+                : "text-foreground/80 hover:text-foreground"
             )}
           >
             {item.title}

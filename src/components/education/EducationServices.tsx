@@ -54,7 +54,7 @@ export default function EducationServices() {
           Education Services
         </h2>
 
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3 text-foreground/80">
           Helping schools, universities, NGOs and institutions improve learning outcomes.
         </p>
 

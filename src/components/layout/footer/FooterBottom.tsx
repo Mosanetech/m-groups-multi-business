@@ -14,7 +14,7 @@ export default async function FooterBottom() {
       pt-8
       text-center
       text-sm
-      text-muted-foreground
+      text-foreground/80
     "
     >
 

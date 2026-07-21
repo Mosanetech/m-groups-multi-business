@@ -19,7 +19,7 @@ export default function HeroStats({ stats }: Props) {
             {stat.value}
           </h3>
 
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-foreground/80">
             {stat.label}
           </p>
 

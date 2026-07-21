@@ -32,7 +32,7 @@ export default function BlogCard({
           {post.title}
         </h2>
 
-        <p className="mt-4 text-muted-foreground">
+        <p className="mt-4 text-foreground/80">
           {post.excerpt}
         </p>
 

@@ -10,7 +10,7 @@ export default function LanguageServices() {
           Our Language Services
         </h2>
 
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3 text-foreground/80">
           Professional language solutions for individuals, businesses and institutions.
         </p>
 
@@ -39,7 +39,7 @@ export default function LanguageServices() {
                 {service.title}
               </h3>
 
-              <p className="mt-4 text-muted-foreground leading-7">
+              <p className="mt-4 text-foreground/80">
                 {service.description}
               </p>
 

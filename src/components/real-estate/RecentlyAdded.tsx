@@ -32,7 +32,7 @@ export default async function RecentlyAdded() {
           Recently Added
         </h2>
 
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-2 text-foreground/80">
           New properties uploaded recently.
         </p>
 

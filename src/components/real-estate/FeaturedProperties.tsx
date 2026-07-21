@@ -34,7 +34,7 @@ export default async function FeaturedProperties() {
             Properties For Sale
           </h2>
 
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-6 text-lg text-foreground/80">
             Discover our latest featured properties.
           </p>
 

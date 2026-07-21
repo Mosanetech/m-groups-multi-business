@@ -8,10 +8,26 @@ const COMPANY = [
 ];
 
 const SERVICES = [
-  { label: "Real Estate", href: "/services/real-estate" },
-  { label: "ICT", href: "/services/ict" },
-  { label: "Financial Services", href: "/services/finance" },
-  { label: "Academy", href: "/services/academy" },
+  {
+    label: "Real Estate",
+    href: "/services/real-estate",
+  },
+  {
+    label: "ICT",
+    href: "/services/ict",
+  },
+  {
+    label: "Financial Services",
+    href: "/services/finance",
+  },
+  {
+    label: "Educational Services",
+    href: "/services/education",
+  },
+  {
+    label: "Language Services",
+    href: "/services/language",
+  },
 ];
 
 export default function FooterLinks() {
@@ -25,7 +41,7 @@ export default function FooterLinks() {
             <Link
               key={item.label}
               href={item.href}
-              className="block text-muted-foreground transition hover:text-primary"
+              className="block text-foreground/80 transition hover:text-primary"
             >
               {item.label}
             </Link>
@@ -41,7 +57,7 @@ export default function FooterLinks() {
             <Link
               key={item.label}
               href={item.href}
-              className="block text-muted-foreground transition hover:text-primary"
+              className="block text-foreground/80 transition hover:text-primary"
             >
               {item.label}
             </Link>

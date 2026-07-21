@@ -20,19 +20,19 @@ const STEPS = [
 
 export default function Process() {
   return (
-    <section className="bg-muted/30 py-24">
+    <section className="bg-background py-16 lg:py-24">
 
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="mx-auto mb-16 max-w-3xl text-center">
+        <div className="mx-auto mb-14 max-w-3xl text-center">
 
-          <h2 className="text-5xl font-bold">
+          <h2 className="text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">
             How We Work
           </h2>
 
         </div>
 
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3">
 
           {STEPS.map((step) => (
             <ProcessStep

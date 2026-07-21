@@ -11,9 +11,12 @@ export default function PublicLayout({
     <>
       <Header />
 
-      <main className="min-h-screen">
+      <main className="min-h-screen overflow-x-hidden">
         <FloatingWhatsApp />
-        {children}
+
+        <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
+          {children}
+        </div>
       </main>
 
       <Footer />

@@ -15,7 +15,7 @@ export default function PropertySearch({
     <div className="relative">
 
       <Search
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/80"
         size={20}
       />
 

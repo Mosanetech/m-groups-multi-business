@@ -37,7 +37,7 @@ export default function FeaturedPost({
             {post.title}
           </h2>
 
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-6 text-lg text-foreground/80">
             {post.excerpt}
           </p>
 

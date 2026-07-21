@@ -67,7 +67,7 @@ export default function EducationCategories() {
                 {category.title}
               </h3>
 
-              <p className="mt-4 text-muted-foreground">
+              <p className="mt-4 text-foreground/80">
                 {category.description}
               </p>
 

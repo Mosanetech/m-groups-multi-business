@@ -22,7 +22,7 @@ export default function FeatureCard({
         {title}
       </h3>
 
-      <p className="mt-4 text-muted-foreground leading-7">
+      <p className="mt-4 text-foreground/80 leading-7">
         {description}
       </p>
 
